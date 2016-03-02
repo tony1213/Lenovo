@@ -6,6 +6,7 @@ import android.content.pm.ActivityInfo;
 import com.overtech.lenovo.widget.dialog.NiftyDialogBuilder;
 
 public class BaseActivity extends FragmentActivity {
+	//Test git ignore
 
 	public NiftyDialogBuilder dialogBuilder;
 
