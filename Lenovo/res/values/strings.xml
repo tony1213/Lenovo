@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Lenovo</string>
+    <!-- 底部导航的Tabview文案-->
+    <string name="tab_text_tasklist">工单</string>
+    <string name="tab_text_knowledge">知识</string>
+    <string name="tab_text_information">信息</string>
+    <string name="tab_text_personal">我的</string>
+    
+
+</resources>

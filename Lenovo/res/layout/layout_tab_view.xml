@@ -1,0 +1,83 @@
+<merge xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.0" >
+
+        <Button
+            android:id="@+id/button_state1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:button="@null"
+            android:drawableTop="@drawable/selector_tab_tasklist"
+            android:gravity="center"
+            android:singleLine="true"
+            android:tag="tasklist"
+            android:text="@string/tab_text_tasklist"
+            android:textColor="@color/text_service_color"
+            android:textSize="14sp" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.0" >
+
+        <Button
+            android:id="@+id/button_state2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:button="@null"
+            android:drawableTop="@drawable/selector_tab_knowledge"
+            android:gravity="center"
+            android:singleLine="true"
+            android:tag="knowledge"
+            android:text="@string/tab_text_knowledge"
+            android:textColor="@color/text_service_color"
+            android:textSize="14sp" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.0" >
+
+        <Button
+            android:id="@+id/button_state3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:button="@null"
+            android:drawableTop="@drawable/selector_tab_information"
+            android:gravity="center"
+            android:singleLine="true"
+            android:tag="information"
+            android:text="@string/tab_text_information"
+            android:textColor="@color/text_service_color"
+            android:textSize="14sp" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.0" >
+
+        <Button
+            android:id="@+id/button_state4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:button="@null"
+            android:drawableTop="@drawable/selector_tab_personal"
+            android:gravity="center"
+            android:singleLine="true"
+            android:tag="personal"
+            android:text="@string/tab_text_personal"
+            android:textColor="@color/text_service_color"
+            android:textSize="14sp" />
+    </FrameLayout>
+
+</merge>

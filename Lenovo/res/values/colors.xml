@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- create by tony 2015-06-28 -->
+    <!-- 深黑，用于标题，正文 -->
+    <color name="main_primary">#ff333333</color>
+    <!-- 用于tab文字，二级文字 -->
+    <color name="main_secondary">#ff666666</color>
+    <!-- 用于说明文字，提示文案 -->
+    <color name="main_hint">#ff999999</color>
+    <!-- 用于输入框默认提示 -->
+    <color name="main_disable">#ffcccccc</color>
+    <color name="main_green">#ff50b400</color>
+    <color name="main_red">#ffff0000</color>
+    <!-- 用于价格，警告 -->
+    <color name="main_orange">#ffff6633</color>
+    <!-- 用于反白 -->
+    <color name="main_white">#ffffffff</color>
+    <!-- 用于链接色 -->
+    <color name="main_link">#ff0088cc</color>
+    <!-- 用于点击色 -->
+    <color name="main_click">#ffeeeeee</color>
+    <!-- 蒙层色，50%纯黑 -->
+    <color name="bg_mask">#78000000</color>
+    <!-- nifity dialog -->
+    <color name="divider_color">#11000000</color>
+    <color name="nifity_dialog_bg">#ffffff</color>
+    <color name="nifity_dialog_btn_text">#DD47BEE9</color>
+    <!-- Tab View -->
+    <color name="main_color">#db0f0c</color>
+    <color name="white">#fff</color>
+    <color name="tab_main_color">#1e1d1d</color>
+    <!-- 标题栏返回按钮的背景颜色 -->
+    <drawable name="button_backward_pressed">#40F64C99</drawable>
+    <drawable name="button_backward_normal">#0000</drawable>
+    
+</resources>
