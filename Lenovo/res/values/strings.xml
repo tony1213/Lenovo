@@ -7,6 +7,6 @@
     <string name="tab_text_knowledge">知识</string>
     <string name="tab_text_information">信息</string>
     <string name="tab_text_personal">我的</string>
-    
+    <string name="location_name">上海</string>
 
 </resources>

@@ -14,7 +14,7 @@
     <!-- 用于价格，警告 -->
     <color name="main_orange">#ffff6633</color>
     <!-- 用于反白 -->
-    <color name="main_white">#ffffffff</color>
+    <color name="main_white">#fffaf6</color>
     <!-- 用于链接色 -->
     <color name="main_link">#ff0088cc</color>
     <!-- 用于点击色 -->
@@ -32,5 +32,8 @@
     <!-- 标题栏返回按钮的背景颜色 -->
     <drawable name="button_backward_pressed">#40F64C99</drawable>
     <drawable name="button_backward_normal">#0000</drawable>
-    
+    <!-- 工单标题栏背景色 -->
+    <color name="tasklist_title_background">#42AFF3</color>
+    <!-- 工单标题栏核心业务背景色 -->
+    <color name="tasklist_title_core_bg">#0079c9</color>
 </resources>
