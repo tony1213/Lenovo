@@ -27,16 +27,16 @@ public class MainActivity extends BaseActivity implements
 	private TextView mTitleTextView;
 
 	/** 上一次的状态 */
-	private int mPreviousTabIndex = 1;
+	private int mPreviousTabIndex = 0;
 	/** 当前状态 */
-	private int mCurrentTabIndex = 1;
+	private int mCurrentTabIndex =0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		mFragmentManager = getSupportFragmentManager();
-		mCurrentTabIndex = 1;
-		mPreviousTabIndex = 1;
+		mCurrentTabIndex = 0;
+		mPreviousTabIndex = 0;
 		setupViews();
 	}
 

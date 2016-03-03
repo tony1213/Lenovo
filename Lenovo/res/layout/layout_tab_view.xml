@@ -2,13 +2,13 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="1.0" >
 
         <Button
             android:id="@+id/button_state1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@null"
             android:button="@null"
             android:drawableTop="@drawable/selector_tab_tasklist"
@@ -22,13 +22,13 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="1.0" >
 
         <Button
             android:id="@+id/button_state2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@null"
             android:button="@null"
             android:drawableTop="@drawable/selector_tab_knowledge"
@@ -42,13 +42,13 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="1.0" >
 
         <Button
             android:id="@+id/button_state3"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@null"
             android:button="@null"
             android:drawableTop="@drawable/selector_tab_information"
@@ -62,13 +62,13 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="1.0" >
 
         <Button
             android:id="@+id/button_state4"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@null"
             android:button="@null"
             android:drawableTop="@drawable/selector_tab_personal"

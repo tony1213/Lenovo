@@ -16,4 +16,12 @@ public class BaseActivity extends FragmentActivity {
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		dialogBuilder = NiftyDialogBuilder.getInstance(this);
 	}
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		if(dialogBuilder.isShowing()){
+			dialogBuilder.dismiss();
+		}
+	}
 }

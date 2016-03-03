@@ -7,17 +7,24 @@ import android.view.ViewGroup;
 import android.view.LayoutInflater;
 import android.view.View.OnClickListener;
 import com.overtech.lenovo.app.BaseFragment;
+import com.overtech.lenovo.utils.Utilities;
 
 public class TasklistFragment extends BaseFragment implements OnClickListener {
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		return inflater.inflate(R.layout.fragment_tasklist, container, false);
+	public void onClick(View v) {
+
 	}
 
 	@Override
-	public void onClick(View v) {
+	protected int getLayoutId() {
+		// TODO Auto-generated method stub
+		return R.layout.fragment_tasklist;
+	}
 
+	@Override
+	protected void afterCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		Utilities.showToast("工单", getActivity());
 	}
 }
