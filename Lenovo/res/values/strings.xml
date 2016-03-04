@@ -8,5 +8,10 @@
     <string name="tab_text_information">信息</string>
     <string name="tab_text_personal">我的</string>
     <string name="location_name">上海</string>
-
+	<string name="tasklist_all">所有</string>
+	<string name="tasklist_receive">接单</string>
+	<string name="tasklist_order">预约</string>
+	<string name="tasklist_visit">上门</string>
+	<string name="tasklist_account">结单</string>
+	<string name="tasklist_evaluation">评价</string>
 </resources>
