@@ -28,7 +28,7 @@
     <!-- Tab View -->
     <color name="main_color">#db0f0c</color>
     <color name="white">#fff</color>
-    <color name="tab_main_color">#1e1d1d</color>
+    <color name="tab_main_color">#42AFF3</color>
     <!-- 标题栏返回按钮的背景颜色 -->
     <drawable name="button_backward_pressed">#40F64C99</drawable>
     <drawable name="button_backward_normal">#0000</drawable>
@@ -36,4 +36,6 @@
     <color name="tasklist_title_background">#42AFF3</color>
     <!-- 工单标题栏核心业务背景色 -->
     <color name="tasklist_title_core_bg">#0079c9</color>
+    <!-- mainactivity 导航栏选择后的背景色 -->
+    <color name="main_activity_navigation_selected">#0079c9</color>
 </resources>

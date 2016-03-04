@@ -1,83 +1,59 @@
-<merge xmlns:android="http://schemas.android.com/apk/res/android" >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:baselineAligned="false"
+    android:orientation="horizontal" >
 
-    <FrameLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/textview_state1"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1.0" >
+        android:gravity="center"
+        android:layout_weight="1"
+        android:background="@drawable/selecter_main_activity_navigation"
+        android:drawableTop="@drawable/icon_tab_tasklist_selected"
+        android:tag="tasklist"
+        android:text="@string/tab_text_tasklist"
+        android:textColor="@color/main_white"
+        android:textSize="14sp" />
 
-        <Button
-            android:id="@+id/button_state1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:button="@null"
-            android:drawableTop="@drawable/selector_tab_tasklist"
-            android:gravity="center"
-            android:singleLine="true"
-            android:tag="tasklist"
-            android:text="@string/tab_text_tasklist"
-            android:textColor="@color/text_service_color"
-            android:textSize="14sp" />
-    </FrameLayout>
-
-    <FrameLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/textview_state2"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1.0" >
+        android:gravity="center"
+        android:layout_weight="1"
+        android:background="@drawable/selecter_main_activity_navigation"
+        android:drawableTop="@drawable/icon_tab_knowledge_selected"
+        android:tag="knowledge"
+        android:text="@string/tab_text_knowledge"
+        android:textColor="@color/main_white"
+        android:textSize="14sp" />
 
-        <Button
-            android:id="@+id/button_state2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:button="@null"
-            android:drawableTop="@drawable/selector_tab_knowledge"
-            android:gravity="center"
-            android:singleLine="true"
-            android:tag="knowledge"
-            android:text="@string/tab_text_knowledge"
-            android:textColor="@color/text_service_color"
-            android:textSize="14sp" />
-    </FrameLayout>
-
-    <FrameLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/textview_state3"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1.0" >
+        android:gravity="center"
+        android:layout_weight="1"
+        android:background="@drawable/selecter_main_activity_navigation"
+        android:drawableTop="@drawable/icon_tab_information_selected"
+        android:tag="information"
+        android:text="@string/tab_text_information"
+        android:textColor="@color/main_white"
+        android:textSize="14sp" />
 
-        <Button
-            android:id="@+id/button_state3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:button="@null"
-            android:drawableTop="@drawable/selector_tab_information"
-            android:gravity="center"
-            android:singleLine="true"
-            android:tag="information"
-            android:text="@string/tab_text_information"
-            android:textColor="@color/text_service_color"
-            android:textSize="14sp" />
-    </FrameLayout>
-
-    <FrameLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/textview_state4"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1.0" >
+        android:gravity="center"
+        android:layout_weight="1"
+        android:background="@drawable/selecter_main_activity_navigation"
+        android:drawableTop="@drawable/icon_tab_personal_selected"
+        android:tag="personal"
+        android:text="@string/tab_text_personal"
+        android:textColor="@color/main_white"
+        android:textSize="14sp" />
 
-        <Button
-            android:id="@+id/button_state4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:button="@null"
-            android:drawableTop="@drawable/selector_tab_personal"
-            android:gravity="center"
-            android:singleLine="true"
-            android:tag="personal"
-            android:text="@string/tab_text_personal"
-            android:textColor="@color/text_service_color"
-            android:textSize="14sp" />
-    </FrameLayout>
-
-</merge>
+</LinearLayout>

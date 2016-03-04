@@ -1,12 +1,13 @@
 package com.overtech.lenovo.app.activity;
 
-import com.overtech.lenovo.R;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
+
+import com.overtech.lenovo.R;
 import com.overtech.lenovo.app.BaseActivity;
 import com.overtech.lenovo.app.activity.callback.FragmentCallback;
 import com.overtech.lenovo.app.activity.fragment.InformationFragment;
@@ -24,7 +25,6 @@ public class MainActivity extends BaseActivity implements
 	private FragmentManager mFragmentManager;
 	private Fragment mCurrentFragment;
 	private TabView mTabView;
-	private TextView mTitleTextView;
 
 	/** 上一次的状态 */
 	private int mPreviousTabIndex = 0;
@@ -42,7 +42,6 @@ public class MainActivity extends BaseActivity implements
 
 	private void setupViews() {
 		setContentView(R.layout.activity_main);
-		mTitleTextView = (TextView) findViewById(R.id.text_title);
 		mTabView = (TabView) findViewById(R.id.view_tab);
 		mTabView.setOnTabChangeListener(this);
 		mTabView.setCurrentTab(mCurrentTabIndex);
@@ -62,7 +61,6 @@ public class MainActivity extends BaseActivity implements
 			if (tag.equals("tasklist")) {
 				mPreviousTabIndex = mCurrentTabIndex;
 				mCurrentTabIndex = 0;
-				mTitleTextView.setText(R.string.tab_text_tasklist);
 				replaceFragment(TasklistFragment.class);
 				// 检查，如果没有登录则跳转到登录界面
 				/*
@@ -74,12 +72,10 @@ public class MainActivity extends BaseActivity implements
 			} else if ("knowledge".equals(tag)) {
 				mPreviousTabIndex = mCurrentTabIndex;
 				mCurrentTabIndex = 1;
-				mTitleTextView.setText(R.string.tab_text_knowledge);
 				replaceFragment(KnowledgeFragment.class);
 			} else if (tag.equals("information")) {
 				mPreviousTabIndex = mCurrentTabIndex;
 				mCurrentTabIndex = 2;
-				mTitleTextView.setText(R.string.tab_text_information);
 				replaceFragment(InformationFragment.class);
 				// 检查，如果没有登录则跳转到登录界面
 				/*
@@ -91,7 +87,6 @@ public class MainActivity extends BaseActivity implements
 			} else if (tag.equals("personal")) {
 				mPreviousTabIndex = mCurrentTabIndex;
 				mCurrentTabIndex = 3;
-				mTitleTextView.setText(R.string.tab_text_personal);
 				replaceFragment(PersonalFragment.class);
 				// 检查，如果没有登录则跳转到登录界面
 				/*
