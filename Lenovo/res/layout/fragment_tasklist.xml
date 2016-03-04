@@ -116,4 +116,10 @@
         </RelativeLayout>
     </LinearLayout>
 
+    <fragment
+        android:id="@+id/fragment_cycle_viewpager_content"
+        android:name="com.overtech.lenovo.widget.cycleviewpager.CycleViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="160dp" />
+
 </LinearLayout>
