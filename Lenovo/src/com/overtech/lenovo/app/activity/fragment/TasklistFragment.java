@@ -25,7 +25,6 @@ public class TasklistFragment extends BaseFragment implements OnClickListener {
 	private TextView mTaskAccount;
 	private TextView mTaskEvaluation;
 	private CycleViewPager cycleViewPager;
-
 	private List<ImageView> views = new ArrayList<ImageView>();
 	private List<ADInfo> infos = new ArrayList<ADInfo>();
 	private String[] imageUrls = {
