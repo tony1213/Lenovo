@@ -14,4 +14,10 @@
 	<string name="tasklist_visit">上门</string>
 	<string name="tasklist_account">结单</string>
 	<string name="tasklist_evaluation">评价</string>
+	<string name="tasklist_no">单号:</string>
+	<string name="tasklist_date">时间:</string>
+	<string name="tasklist_class">分类:</string>
+	<string name="tasklist_description">描述:</string>
+	<string name="tasklist_remark">备注:</string>
+	<string name="tasklist_wait_evaluate">等待评价</string>
 </resources>
