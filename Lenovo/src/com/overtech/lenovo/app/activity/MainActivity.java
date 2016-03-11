@@ -34,14 +34,14 @@ public class MainActivity extends BaseActivity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
 		mFragmentManager = getSupportFragmentManager();
 		mCurrentTabIndex = 0;
-		mPreviousTabIndex = 0;
+		mPreviousTabIndex = -1;
 		setupViews();
 	}
 
 	private void setupViews() {
-		setContentView(R.layout.activity_main);
 		mTabView = (TabView) findViewById(R.id.view_tab);
 		mTabView.setOnTabChangeListener(this);
 		mTabView.setCurrentTab(mCurrentTabIndex);

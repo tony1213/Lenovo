@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.overtech.lenovo.R;
 import com.overtech.lenovo.app.BaseFragment;
 import com.overtech.lenovo.app.activity.adapter.TaskListAdapter;
+import com.overtech.lenovo.app.activity.adapter.TaskListAdapter.OnItemClickListener;
 import com.overtech.lenovo.entity.tasklist.webservice.ADInfo;
 import com.overtech.lenovo.entity.tasklist.webservice.Task;
 import com.overtech.lenovo.utils.Utilities;
@@ -22,7 +23,7 @@ import com.overtech.lenovo.widget.bitmap.ImageLoader;
 import com.overtech.lenovo.widget.cycleviewpager.CycleViewPager;
 import com.overtech.lenovo.widget.cycleviewpager.ViewFactory;
 
-public class TasklistFragment extends BaseFragment implements OnClickListener {
+public class TasklistFragment extends BaseFragment implements OnClickListener, OnItemClickListener {
 	private TextView mTaskAll;
 	private TextView mTaskReceive;
 	private TextView mTaskOrder;
@@ -73,14 +74,15 @@ public class TasklistFragment extends BaseFragment implements OnClickListener {
 	private void initRecyclerView() {
 		// TODO Auto-generated method stub
 		mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-		mRecyclerView.addItemDecoration(new ItemDecoration() {});//实现分割线
+		mRecyclerView.addItemDecoration(new ItemDecoration() {
+		});// 实现分割线
 		datas = new ArrayList<Task>();
 		Task task1 = new Task("", "20160309-0001", "2016-03-11  11:30", "网络问题",
 				"WIFI无法正常使用", "携带装备", "langitude", "longitude", "2小时上门", "1",
 				"接单");
-		Task task2 = new Task("", "20160309-0002", "2016-03-12  12:30", "POS软件问题",
-				"pos无法正常使用", "携带装备", "langitude", "longitude", "6小时上门", "0",
-				"评价");
+		Task task2 = new Task("", "20160309-0002", "2016-03-12  12:30",
+				"POS软件问题", "pos无法正常使用", "携带装备", "langitude", "longitude",
+				"6小时上门", "0", "评价");
 		Task task3 = new Task("", "20160309-0003", "2016-03-13  13:30", "网络问题",
 				"哈哈无法正常使用", "携带装备", "langitude", "longitude", "2小时上门", "0",
 				"接单");
@@ -97,13 +99,15 @@ public class TasklistFragment extends BaseFragment implements OnClickListener {
 		datas.add(task4);
 		datas.add(task5);
 		adapter = new TaskListAdapter(getActivity(), datas);
+		adapter.setOnItemClickListener(this);
 		mRecyclerView.setAdapter(adapter);
+
 	}
 
 	private void initialCycleViewPager() {
 		// TODO Auto-generated method stub
 		ImageLoader.getInstance().initContext(getActivity());// 初始化ImageView;
-		cycleViewPager = (CycleViewPager) getActivity().getFragmentManager()
+		cycleViewPager = (CycleViewPager) getChildFragmentManager()// 绝对不能用getActivity().getSupportFragmentManager()
 				.findFragmentById(R.id.fragment_cycle_viewpager_content);
 		for (int i = 0; i < imageUrls.length; i++) {
 			ADInfo info = new ADInfo();
@@ -169,5 +173,23 @@ public class TasklistFragment extends BaseFragment implements OnClickListener {
 		default:
 			break;
 		}
+	}
+
+	@Override
+	public void onItemClick(View view, int position) {
+		// TODO Auto-generated method stub
+		Utilities.showToast("您点击了条目"+position, getActivity());
+	}
+
+	@Override
+	public void onLogItemClick(View view, int position) {
+		// TODO Auto-generated method stub
+		Utilities.showToast("您点击了条目"+position+"的log", getActivity());
+	}
+
+	@Override
+	public void onButtonItemClick(View view, int position) {
+		// TODO Auto-generated method stub
+		Utilities.showToast("您接了条目"+position+"的工单", getActivity());
 	}
 }

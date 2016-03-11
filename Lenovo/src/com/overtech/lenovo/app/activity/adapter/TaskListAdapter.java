@@ -8,9 +8,11 @@ import android.support.v7.widget.RecyclerView.Adapter;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.overtech.lenovo.R;
@@ -20,10 +22,38 @@ import com.overtech.lenovo.picasso.Picasso;
 public class TaskListAdapter extends Adapter<TaskListAdapter.MyViewHolder> {
 	private Context ctx;
 	private List<Task> datas;
+	private OnItemClickListener mClickListener;
 
 	public TaskListAdapter(Context ctx, List<Task> datas) {
 		this.ctx = ctx;
 		this.datas = datas;
+	}
+
+	public void setOnItemClickListener(OnItemClickListener listener) {
+		this.mClickListener = listener;
+	}
+
+	/**
+	 * 条目的事件点击接口
+	 * 
+	 * @author Overtech
+	 * 
+	 */
+	public interface OnItemClickListener {
+		/**
+		 * 条目点击事件回调
+		 */
+		void onItemClick(View view, int position);
+
+		/**
+		 * 条目log点击事件回调
+		 */
+		void onLogItemClick(View view, int position);
+
+		/**
+		 * 条目按钮点击事件，当前条目就可能一个button，所以目前这样设计
+		 */
+		void onButtonItemClick(View view, int position);
 	}
 
 	@Override
@@ -33,7 +63,7 @@ public class TaskListAdapter extends Adapter<TaskListAdapter.MyViewHolder> {
 	}
 
 	@Override
-	public void onBindViewHolder(MyViewHolder holder, int position) {
+	public void onBindViewHolder(final MyViewHolder holder, int position) {
 		// TODO Auto-generated method stub
 		Task task = datas.get(position);
 		if (new Random().nextFloat() > 0.5) {
@@ -62,6 +92,35 @@ public class TaskListAdapter extends Adapter<TaskListAdapter.MyViewHolder> {
 		} else if (task.getIsUrgent().equals("0")) {
 			holder.taskUrgency.setVisibility(View.GONE);
 		}
+		if (mClickListener != null) {
+			holder.taskLogo.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					int pos = holder.getLayoutPosition();
+					mClickListener.onLogItemClick(v, pos);
+				}
+			});
+			holder.taskReceive.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					int pos = holder.getLayoutPosition();
+					mClickListener.onButtonItemClick(v, pos);
+				}
+			});
+			holder.taskItem.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					int pos = holder.getLayoutPosition();
+					mClickListener.onItemClick(v, pos);
+				}
+			});
+		}
 
 	}
 
@@ -75,6 +134,7 @@ public class TaskListAdapter extends Adapter<TaskListAdapter.MyViewHolder> {
 	}
 
 	class MyViewHolder extends ViewHolder {
+		RelativeLayout taskItem;
 		ImageView taskLogo;
 		TextView taskNo;
 		TextView taskDate;
@@ -90,6 +150,7 @@ public class TaskListAdapter extends Adapter<TaskListAdapter.MyViewHolder> {
 		public MyViewHolder(View view) {
 			super(view);
 			// TODO Auto-generated constructor stub
+			taskItem = (RelativeLayout) view.findViewById(R.id.rl_task_item);
 			taskLogo = (ImageView) view.findViewById(R.id.iv_task_logo);
 			taskNo = (TextView) view.findViewById(R.id.tv_task_no);
 			taskDate = (TextView) view.findViewById(R.id.tv_task_date);

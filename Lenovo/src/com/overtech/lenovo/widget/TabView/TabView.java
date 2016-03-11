@@ -17,7 +17,7 @@ public class TabView extends LinearLayout implements OnClickListener {
 
 	private OnTabChangeListener mOnTabChangedListener;
 
-	private int mState = 0;
+	private int mState =-1;
 
 	private final TextView mStateTextView1;
 	private final TextView mStateTextView2;
