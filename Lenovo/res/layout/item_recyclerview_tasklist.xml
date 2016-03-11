@@ -7,6 +7,7 @@
         android:id="@+id/iv_task_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:layout_margin="10dp"
         android:src="@drawable/icon_tasklist_default1" />
 
@@ -14,6 +15,7 @@
         android:id="@+id/tasklist_detail"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_centerVertical="true"
         android:layout_margin="10dp"
         android:layout_toRightOf="@id/iv_task_logo"
         android:orientation="vertical" >
@@ -28,6 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tasklist_no"
+                android:textColor="#413d38"
                 android:textStyle="bold" />
 
             <TextView
@@ -36,6 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:text="20160122-0008"
+                android:textColor="#413d38"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -126,6 +130,8 @@
             android:id="@+id/tv_task_distance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/icon_tasklist_map"
+            android:drawablePadding="3dp"
             android:text="8km" />
 
         <TextView
@@ -142,30 +148,30 @@
         android:layout_alignParentRight="true"
         android:layout_marginBottom="10dp"
         android:layout_marginRight="10dp" >
-        <TextView 
+
+        <TextView
             android:id="@+id/tv_task_wait_evaluate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tasklist_wait_evaluate"
             android:textColor="@color/main_red"
-            android:visibility="gone"
-            />
-        <Button 
+            android:visibility="gone" />
+
+        <Button
             android:id="@+id/bt_task_receive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/shape_tasklist_receive_bg"
             android:text="@string/tasklist_receive"
-            android:textColor="@color/main_red"
-            />
+            android:textColor="@color/main_red" />
     </RelativeLayout>
-    
-    <ImageView 
+
+    <ImageView
         android:id="@+id/iv_task_urgency"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:src="@drawable/icon_tasklist_urgency"
-        />
+        android:layout_alignParentTop="true"
+        android:src="@drawable/icon_tasklist_urgency" />
 
 </RelativeLayout>
