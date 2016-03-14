@@ -19,8 +19,8 @@ import com.overtech.lenovo.widget.TabView.TabView;
 import com.overtech.lenovo.widget.TabView.TabView.OnTabChangeListener;
 import com.overtech.lenovo.widget.dialog.Effectstype;
 
-public class MainActivity extends BaseActivity implements
-		OnTabChangeListener, FragmentCallback {
+public class MainActivity extends BaseActivity implements OnTabChangeListener,
+		FragmentCallback {
 
 	private FragmentManager mFragmentManager;
 	private Fragment mCurrentFragment;
@@ -29,12 +29,17 @@ public class MainActivity extends BaseActivity implements
 	/** 上一次的状态 */
 	private int mPreviousTabIndex = 0;
 	/** 当前状态 */
-	private int mCurrentTabIndex =0;
+	private int mCurrentTabIndex = 0;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+	protected int getLayoutIds() {
+		// TODO Auto-generated method stub
+		return R.layout.activity_main;
+	}
+
+	@Override
+	protected void afterCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
 		mFragmentManager = getSupportFragmentManager();
 		mCurrentTabIndex = 0;
 		mPreviousTabIndex = -1;
@@ -46,7 +51,8 @@ public class MainActivity extends BaseActivity implements
 		mTabView.setOnTabChangeListener(this);
 		mTabView.setCurrentTab(mCurrentTabIndex);
 		mCurrentFragment = new TasklistFragment();
-		FragmentUtils.replaceFragment(mFragmentManager, R.id.layout_content,TasklistFragment.class, null, false);
+		FragmentUtils.replaceFragment(mFragmentManager, R.id.layout_content,
+				TasklistFragment.class, null, false);
 	}
 
 	@Override
@@ -102,12 +108,15 @@ public class MainActivity extends BaseActivity implements
 
 	private void replaceFragment(Class<? extends Fragment> newFragment) {
 
-		mCurrentFragment = FragmentUtils.switchFragment(mFragmentManager, R.id.layout_content,mCurrentFragment, newFragment, null, false);
+		mCurrentFragment = FragmentUtils
+				.switchFragment(mFragmentManager, R.id.layout_content,
+						mCurrentFragment, newFragment, null, false);
 	}
-	
+
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+		if (keyCode == KeyEvent.KEYCODE_BACK
+				&& event.getAction() == KeyEvent.ACTION_DOWN) {
 			Effectstype effect = Effectstype.Shake;
 			dialogBuilder.withTitle("温馨提示")
 					.withTitleColor(R.color.main_primary)
@@ -133,6 +142,5 @@ public class MainActivity extends BaseActivity implements
 		}
 		return super.onKeyDown(keyCode, event);
 	}
-	
 
 }

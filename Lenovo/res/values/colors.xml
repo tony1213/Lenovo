@@ -40,4 +40,8 @@
     <color name="main_activity_navigation_selected">#0079c9</color>
     <!-- 工标题栏TextView选中后的颜色 -->
     <color name="tasklist_title_tv_selected">#006bac</color>
+    <!-- 工单信息时间背景 -->
+    <color name="tasklist_information_time_bg">#ccccc5</color>
+    <color name="tasklist_item_bg">#F5F2F1</color>
+    <color name="task_information_title">#726d69</color>
 </resources>
