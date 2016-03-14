@@ -44,4 +44,6 @@
     <color name="tasklist_information_time_bg">#ccccc5</color>
     <color name="tasklist_item_bg">#F5F2F1</color>
     <color name="task_information_title">#726d69</color>
+    <color name="blue">#42B0F0</color>
+    <color name="tab_text_color">#A19D97</color>
 </resources>

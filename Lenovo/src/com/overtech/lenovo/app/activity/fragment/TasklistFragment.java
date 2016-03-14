@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Intent;
-import android.graphics.Canvas;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.ItemDecoration;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -16,9 +14,10 @@ import android.widget.TextView;
 
 import com.overtech.lenovo.R;
 import com.overtech.lenovo.app.BaseFragment;
-import com.overtech.lenovo.app.activity.TaskInformationActivity;
 import com.overtech.lenovo.app.activity.adapter.TaskListAdapter;
 import com.overtech.lenovo.app.activity.adapter.TaskListAdapter.OnItemClickListener;
+import com.overtech.lenovo.app.activity.task.TaskDetailActivity;
+import com.overtech.lenovo.app.activity.task.TaskInformationActivity;
 import com.overtech.lenovo.entity.tasklist.webservice.ADInfo;
 import com.overtech.lenovo.entity.tasklist.webservice.Task;
 import com.overtech.lenovo.utils.Utilities;
@@ -184,6 +183,9 @@ public class TasklistFragment extends BaseFragment implements OnClickListener,
 	public void onItemClick(View view, int position) {
 		// TODO Auto-generated method stub
 		Utilities.showToast("您点击了条目" + position, getActivity());
+		Intent intent = new Intent(getActivity(),TaskDetailActivity.class);
+		Bundle bundle = new Bundle();
+		startActivity(intent,bundle);
 	}
 
 	@Override
