@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <!-- create by tony 2015-06-28 -->
     <!-- 深黑，用于标题，正文 -->
     <color name="main_primary">#ff333333</color>
@@ -49,4 +50,7 @@
     <color name="grey">#e7e6e3</color>
     <color name="orange">#ff4700</color>
     <color name="simple_orange">#ff9000</color>
+    <color name="green">#00A395</color>
+    <color name="simple_green">#67d6cd</color>
+
 </resources>
