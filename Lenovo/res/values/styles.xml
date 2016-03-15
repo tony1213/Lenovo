@@ -195,11 +195,18 @@
         <item name="android:background">@drawable/selecter_textview_tasklist_bg</item>
         <item name="android:padding">3dp</item>
     </style>
+
     <style name="tv_tasklist_information_item" parent="@android:style/Widget.TextView">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:textColor">@color/nifity_dialog_bg</item>
-        
+    </style>
+
+    <style name="bt_style" parent="@style/Widget.AppCompat.Button.Small">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:background">@drawable/shape_task_info_frag_button_bg</item>
     </style>
 
 </resources>

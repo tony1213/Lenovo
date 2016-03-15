@@ -46,4 +46,7 @@
     <color name="task_information_title">#726d69</color>
     <color name="blue">#42B0F0</color>
     <color name="tab_text_color">#A19D97</color>
+    <color name="grey">#e7e6e3</color>
+    <color name="orange">#ff4700</color>
+    <color name="simple_orange">#ff9000</color>
 </resources>
