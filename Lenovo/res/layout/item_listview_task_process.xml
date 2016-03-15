@@ -7,14 +7,14 @@
         android:id="@+id/iv_process_point"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="21dp"
         android:src="@drawable/icon_process_point" />
 
     <View
         android:layout_width="1dp"
         android:layout_height="50dp"
         android:layout_below="@id/iv_process_point"
-        android:layout_marginLeft="27dp"
+        android:layout_marginLeft="28dp"
         android:background="@color/simple_orange" />
 
     <LinearLayout
@@ -25,7 +25,7 @@
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/tv_task_state"
+            android:id="@+id/tv_task_process_state"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="开单"
@@ -33,24 +33,30 @@
             android:textSize="@dimen/text_size_title" />
 
         <TextView
+            android:id="@+id/tv_task_process_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="时间： 2016/01/22" />
 
         <TextView
+            android:id="@+id/tv_task_process_other"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="单号：20160122-0008" />
     </LinearLayout>
 
     <android.support.v7.widget.AppCompatButton
-        style="@style/bt_style"
+        android:id="@+id/bt_task_action"
         android:layout_width="wrap_content"
-        android:minHeight="30dp"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_marginRight="20dp"
+        android:layout_marginTop="4dp"
         android:background="@drawable/shape_task_info_frag_button_bg"
+        android:minHeight="30dp"
+        android:minWidth="40dp"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
         android:text="接单"
         android:textColor="@color/blue" />
 

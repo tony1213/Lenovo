@@ -7,15 +7,14 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_marginTop="10dp"
         android:background="@color/blue" >
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginLeft="27dp"
+            android:layout_marginTop="13dp"
             android:orientation="vertical" >
 
             <LinearLayout
@@ -27,13 +26,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="报修人:"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_hint" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="张小姐"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_hint" />
             </LinearLayout>
 
             <LinearLayout
@@ -45,13 +46,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="电    话:"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_hint" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="021-12345678"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_hint" />
             </LinearLayout>
 
             <LinearLayout
@@ -63,13 +66,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="地    点:"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_hint" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="上海市徐家汇广元西路309号"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_hint" />
             </LinearLayout>
         </LinearLayout>
 
@@ -79,22 +84,22 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="30dp"
             android:src="@drawable/icon_dial_phone" />
 
         <View
             android:layout_width="1dp"
             android:layout_height="70dp"
+            android:layout_alignParentRight="true"
             android:layout_marginBottom="15dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="67dp"
             android:layout_marginTop="15dp"
-            android:layout_toLeftOf="@id/iv_dial_phone"
             android:background="@color/white" />
     </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="10dp"
+        android:layout_height="5dp"
         android:background="@color/grey" />
 
     <RelativeLayout
@@ -104,9 +109,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginBottom="12dp"
+            android:layout_marginLeft="22dp"
+            android:layout_marginTop="20dp"
             android:text="接单流程"
             android:textColor="@color/blue"
             android:textSize="@dimen/text_size_list" />
@@ -115,9 +120,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginBottom="10dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginBottom="12dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginTop="20dp"
             android:text="￥300/单"
             android:textColor="@color/orange"
             android:textSize="@dimen/text_size_list" />
@@ -132,7 +137,6 @@
         android:id="@+id/lv_task_process"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="10dp"
         android:layout_weight="1"
         android:divider="#ffffffff" >
     </ListView>
@@ -145,9 +149,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="30dp"
-        android:paddingLeft="20dp"
-        android:paddingTop="20dp" >
+        android:paddingBottom="20dp"
+        android:paddingLeft="28dp"
+        android:paddingTop="24dp" >
 
         <ImageView
             android:id="@+id/iv_notification"
@@ -188,7 +192,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@id/tv_notification"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="21dp"
             android:text="16/01/22" />
     </RelativeLayout>
 
