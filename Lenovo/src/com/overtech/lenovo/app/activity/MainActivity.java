@@ -50,9 +50,9 @@ public class MainActivity extends BaseActivity implements OnTabChangeListener,
 		mTabView = (TabView) findViewById(R.id.view_tab);
 		mTabView.setOnTabChangeListener(this);
 		mTabView.setCurrentTab(mCurrentTabIndex);
-		mCurrentFragment = new TasklistFragment();
-		FragmentUtils.replaceFragment(mFragmentManager, R.id.layout_content,
-				TasklistFragment.class, null, false);
+		// mCurrentFragment = new TasklistFragment();//此处多余
+		// FragmentUtils.replaceFragment(mFragmentManager, R.id.layout_content,
+		// TasklistFragment.class, null, false);
 	}
 
 	@Override
