@@ -40,6 +40,10 @@ public class KnowledgeFragment extends BaseFragment {
 		// TODO Auto-generated method stub
 		konwledgeTitle = (ListView) mRootView
 				.findViewById(R.id.lv_konwledge_title);
+		fragmentManager = this.getChildFragmentManager();
+		currentFragment = FragmentUtils.switchFragment(fragmentManager,
+				R.id.fl_knowledge_container, currentFragment, clazz[0], null,
+				false);
 		adapter = new KnowledgeAdapter(getActivity());
 		konwledgeTitle.setAdapter(adapter);
 		konwledgeTitle.setOnItemClickListener(new OnItemClickListener() {
@@ -48,11 +52,11 @@ public class KnowledgeFragment extends BaseFragment {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				// TODO Auto-generated method stub
-				currentFragment=FragmentUtils.switchFragment(fragmentManager,
+				
+				currentFragment = FragmentUtils.switchFragment(fragmentManager,
 						R.id.fl_knowledge_container, currentFragment,
 						clazz[arg2], null, false);
 			}
 		});
-		fragmentManager = getActivity().getSupportFragmentManager();
 	}
 }

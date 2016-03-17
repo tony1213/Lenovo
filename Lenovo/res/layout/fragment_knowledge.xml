@@ -30,6 +30,7 @@
             android:layout_height="21dp"
             android:layout_marginLeft="29dp"
             android:layout_marginTop="28dp"
+            android:drawableLeft="@drawable/icon_knowledge_search"
             android:layout_toRightOf="@id/iv_icon_common_back"
             android:background="@drawable/shape_tasklist_title_core_bg"
             android:hint="输入POS机维修"

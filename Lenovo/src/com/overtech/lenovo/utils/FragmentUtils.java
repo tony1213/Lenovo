@@ -103,7 +103,7 @@ public class FragmentUtils {
                 }
                 transaction.commitAllowingStateLoss();
             } else {
-                fragment.getArguments().putAll(args);
+//                fragment.getArguments().putAll(args);
             }
 
             return fragment;
