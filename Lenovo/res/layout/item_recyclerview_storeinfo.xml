@@ -3,6 +3,6 @@
     android:id="@+id/iv_store_information"
     android:layout_width="330dp"
     android:adjustViewBounds="true"
-    android:scaleType="fitCenter" >
+    android:scaleType="centerCrop" >
 
 </ImageView>

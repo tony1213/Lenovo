@@ -1,15 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="知识" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="@color/blue" >
 
-</RelativeLayout>
+        <ImageView
+            android:id="@+id/iv_icon_common_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/icon_common_back_arrow" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="12dp"
+            android:text="知识"
+            android:textColor="@color/white" />
+
+        <EditText
+            android:layout_width="240dp"
+            android:layout_height="21dp"
+            android:layout_marginLeft="29dp"
+            android:layout_marginTop="28dp"
+            android:layout_toRightOf="@id/iv_icon_common_back"
+            android:background="@drawable/shape_tasklist_title_core_bg"
+            android:hint="输入POS机维修"
+            android:textColorHint="@color/white" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="35dp"
+            android:src="@drawable/icon_arrow_bottom" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal" >
+
+        <ListView
+            android:id="@+id/lv_konwledge_title"
+            android:layout_width="56dp"
+            android:layout_height="wrap_content" >
+        </ListView>
+
+        <FrameLayout
+            android:id="@+id/fl_knowledge_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+        </FrameLayout>
+    </LinearLayout>
+
+</LinearLayout>
