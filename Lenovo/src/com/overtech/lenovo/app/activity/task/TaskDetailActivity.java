@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.TextView;
 
 import com.overtech.lenovo.R;
 import com.overtech.lenovo.app.BaseActivity;
@@ -15,10 +18,13 @@ import com.overtech.lenovo.app.activity.task.fragment.DetailInformationFragment;
 import com.overtech.lenovo.app.activity.task.fragment.PropertyFragment;
 import com.overtech.lenovo.app.activity.task.fragment.StoreInformationFragment;
 import com.overtech.lenovo.app.activity.task.fragment.TaskInformationFragment;
+import com.overtech.lenovo.widget.customviewpager.CustomeViewPager;
 
 public class TaskDetailActivity extends BaseActivity {
 	private TabLayout mTabLayout;
-	private ViewPager mViewPager;
+	// private ViewPager mViewPager;
+	private CustomeViewPager mViewPager;
+	private TextView mTitle;
 	private TaskDetailAdapter adapter;
 	private List<Fragment> listFragment;
 	private List<String> listTitle;
@@ -37,7 +43,8 @@ public class TaskDetailActivity extends BaseActivity {
 	protected void afterCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		mTabLayout = (TabLayout) findViewById(R.id.tabLayout);
-		mViewPager = (ViewPager) findViewById(R.id.viewPager);
+		mViewPager = (CustomeViewPager) findViewById(R.id.viewPager);
+		mTitle = (TextView) findViewById(R.id.tv_task_detail_title);
 
 		taskInfoFrag = new TaskInformationFragment();
 		detailInfoFrag = new DetailInformationFragment();
@@ -67,6 +74,15 @@ public class TaskDetailActivity extends BaseActivity {
 
 		mViewPager.setAdapter(adapter);
 		mTabLayout.setupWithViewPager(mViewPager);
+
+		mTitle.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				finish();
+			}
+		});
 	}
 
 }

@@ -41,10 +41,10 @@ public class TasklistFragment extends BaseFragment implements OnClickListener,
 	private List<ImageView> views = new ArrayList<ImageView>();
 	private List<ADInfo> infos = new ArrayList<ADInfo>();
 	private String[] imageUrls = {
-			"http://pic90.nipic.com/file/20160225/5189591_225045255000_2.jpg",
-			"http://pic1.huitu.com/res/20110407/1086_20110407213952112000_1.jpg",
-			"http://pic75.nipic.com/file/20150818/17961491_085903764000_2.jpg",
-			"http://pic65.nipic.com/file/20150420/18897329_213037602000_2.jpg", };
+			"http://www.pp3.cn/uploads/allimg/111125/1612125591-0.jpg",
+			"http://www.pp3.cn/uploads/allimg/111215/1033042330-0.jpg",
+			"http://m2.quanjing.com/2m/aflrf001/jjig000030.jpg",
+			"http://pic1.bbzhi.com/jieribizhi/baiseshengdanzhutisheying/holiday_2008_white_christmas_26646_8.jpg", };
 
 	@Override
 	protected int getLayoutId() {

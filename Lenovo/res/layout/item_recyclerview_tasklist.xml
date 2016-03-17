@@ -3,7 +3,7 @@
     android:id="@+id/rl_task_item"
     android:layout_width="match_parent"
     android:background="@color/tasklist_item_bg"
-    android:layout_height="140dp" >
+    android:layout_height="130dp" >
 
     <ImageView
         android:id="@+id/iv_task_logo"
@@ -148,8 +148,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_marginBottom="10dp"
-        android:layout_marginRight="10dp" >
+        android:layout_marginBottom="15dp"
+        android:layout_marginRight="26dp" >
 
         <TextView
             android:id="@+id/tv_task_wait_evaluate"
@@ -163,6 +163,8 @@
             android:id="@+id/bt_task_receive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:minWidth="38dp"
+            android:minHeight="15dp"
             android:background="@drawable/shape_tasklist_receive_bg"
             android:text="@string/tasklist_receive"
             android:textColor="@color/main_red" />
