@@ -8,12 +8,7 @@ import com.overtech.lenovo.R;
 import com.overtech.lenovo.app.BaseFragment;
 import com.overtech.lenovo.utils.Utilities;
 
-public class InformationFragment extends BaseFragment implements OnClickListener {
-
-	@Override
-	public void onClick(View v) {
-
-	}
+public class InformationFragment extends BaseFragment {
 
 	@Override
 	protected int getLayoutId() {

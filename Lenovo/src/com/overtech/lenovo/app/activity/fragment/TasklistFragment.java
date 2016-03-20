@@ -143,6 +143,8 @@ public class TasklistFragment extends BaseFragment implements OnClickListener,
 		cycleViewPager.setTime(2000);
 		// 设置圆点指示图标组居中显示，默认靠右
 		cycleViewPager.setIndicatorCenter();
+		
+		
 	}
 
 	@Override

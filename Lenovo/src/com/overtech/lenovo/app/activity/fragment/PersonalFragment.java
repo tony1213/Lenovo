@@ -1,21 +1,21 @@
 package com.overtech.lenovo.app.activity.fragment;
 
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
 import android.os.Bundle;
-import android.view.View;
+import android.util.Log;
+import android.widget.ImageView;
+
 import com.overtech.lenovo.R;
-import android.view.ViewGroup;
-import android.view.LayoutInflater;
-import android.view.View.OnClickListener;
 import com.overtech.lenovo.app.BaseFragment;
-import com.overtech.lenovo.config.Debug;
-import com.overtech.lenovo.utils.Utilities;
+import com.overtech.lenovo.picasso.Picasso;
+import com.overtech.lenovo.picasso.Transformation;
+import com.overtech.lenovo.utils.ImageCacheUtils;
+import com.overtech.lenovo.widget.bitmap.ImageLoader;
 
-public class PersonalFragment extends BaseFragment implements OnClickListener {
-
-	@Override
-	public void onClick(View v) {
-
-	}
+public class PersonalFragment extends BaseFragment {
+	private ImageView mAvator;
+	private String imageUrl = "http://img0w.pconline.com.cn/pconline/1309/03/3452566_13.jpg";
 
 	@Override
 	protected int getLayoutId() {
@@ -26,6 +26,22 @@ public class PersonalFragment extends BaseFragment implements OnClickListener {
 	@Override
 	protected void afterCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		Utilities.showToast("个人中心", getActivity());
+		mAvator = (ImageView) mRootView.findViewById(R.id.iv_avator);
+		ImageLoader.getInstance().displayImage(imageUrl, mAvator,
+				R.drawable.icon_avator_default, R.drawable.ic_launcher,
+				new Transformation() {
+
+					@Override
+					public Bitmap transform(Bitmap source) {
+						// TODO Auto-generated method stub
+						return ImageCacheUtils.toRoundBitmap(source);
+					}
+
+					@Override
+					public String key() {
+						// TODO Auto-generated method stub
+						return null;
+					}
+				}, Config.RGB_565);
 	}
 }
