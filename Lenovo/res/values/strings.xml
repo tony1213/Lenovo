@@ -2,25 +2,28 @@
 <resources>
 
     <string name="app_name">Lenovo</string>
-    <!-- 底部导航的Tabview文案-->
+    <!-- 底部导航的Tabview文案 -->
     <string name="tab_text_tasklist">工单</string>
     <string name="tab_text_knowledge">知识</string>
     <string name="tab_text_information">信息</string>
     <string name="tab_text_personal">我的</string>
     <string name="location_name">上海</string>
-	<string name="tasklist_all">所有</string>
-	<string name="tasklist_receive">接单</string>
-	<string name="tasklist_order">预约</string>
-	<string name="tasklist_visit">上门</string>
-	<string name="tasklist_account">结单</string>
-	<string name="tasklist_evaluation">评价</string>
-	<string name="tasklist_no">单号:</string>
-	<string name="tasklist_date">时间:</string>
-	<string name="tasklist_class">分类:</string>
-	<string name="tasklist_description">描述:</string>
-	<string name="tasklist_remark">备注:</string>
-	<string name="tasklist_region">范围:</string>
-	<string name="tasklist_money">金额:</string>
-	<string name="tasklist_wait_evaluate">等待评价</string>
-	<string name="tasklist_information">工单信息</string>
+    <string name="tasklist_all">所有</string>
+    <string name="tasklist_receive">接单</string>
+    <string name="tasklist_order">预约</string>
+    <string name="tasklist_visit">上门</string>
+    <string name="tasklist_account">结单</string>
+    <string name="tasklist_evaluation">评价</string>
+    <string name="tasklist_no">单号:</string>
+    <string name="tasklist_date">时间:</string>
+    <string name="tasklist_class">分类:</string>
+    <string name="tasklist_description">描述:</string>
+    <string name="tasklist_remark">备注:</string>
+    <string name="tasklist_region">范围:</string>
+    <string name="tasklist_money">金额:</string>
+    <string name="tasklist_wait_evaluate">等待评价</string>
+    <string name="tasklist_information">工单信息</string>
+    <string name="information_default1">星巴克门店运维项目3.1正式上线，第一阶段涉及江苏、浙江、安徽三个省，欢迎大家主动承接。请联系QQ:6657468,6657468@qq.com</string>
+    <string name="information_default2">[上海招聘] 招聘T2桌面工程师一名，税前6000，五险一金，2.15到岗。有意愿者请按标准简历模板（见知识库）填写后发至hr@dajutech.com</string>
+
 </resources>
