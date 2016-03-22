@@ -15,7 +15,7 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/Theme.AppCompat.Light" >
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
         <activity
             android:name="com.overtech.lenovo.app.activity.MainActivity"
             android:label="@string/app_name" >
@@ -26,7 +26,9 @@
             </intent-filter>
         </activity>
         <activity android:name="com.overtech.lenovo.app.activity.task.TaskInformationActivity" />
-        <activity android:name="com.overtech.lenovo.app.activity.task.TaskDetailActivity"/>
+        <activity android:name="com.overtech.lenovo.app.activity.task.TaskDetailActivity" />
+        <activity android:name="com.overtech.lenovo.app.activity.personal.PersonalSettingActivity" >
+        </activity>
     </application>
 
 </manifest>
