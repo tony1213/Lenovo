@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Intent;
+import android.graphics.Bitmap.Config;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,6 +24,7 @@ import com.overtech.lenovo.entity.tasklist.webservice.Task;
 import com.overtech.lenovo.utils.Utilities;
 import com.overtech.lenovo.widget.bitmap.ImageLoader;
 import com.overtech.lenovo.widget.cycleviewpager.CycleViewPager;
+import com.overtech.lenovo.widget.cycleviewpager.CycleViewPager.ImageCycleViewListener;
 import com.overtech.lenovo.widget.cycleviewpager.ViewFactory;
 import com.overtech.lenovo.widget.itemdecoration.DividerItemDecoration;
 
@@ -78,8 +80,8 @@ public class TasklistFragment extends BaseFragment implements OnClickListener,
 	private void initRecyclerView() {
 		// TODO Auto-generated method stub
 		mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-		mRecyclerView.addItemDecoration(new DividerItemDecoration(
-				getContext(), DividerItemDecoration.VERTICAL_LIST));// 实现分割线
+		mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(),
+				DividerItemDecoration.VERTICAL_LIST));// 实现分割线
 		datas = new ArrayList<Task>();
 		Task task1 = new Task("", "20160309-0001", "2016-03-11  11:30", "网络问题",
 				"WIFI无法正常使用", "携带装备", "langitude", "longitude", "2小时上门", "1",
@@ -120,31 +122,27 @@ public class TasklistFragment extends BaseFragment implements OnClickListener,
 			infos.add(info);
 		}
 
-		// 将最后一个ImageView添加进来
-		views.add(ViewFactory.getImageView(getActivity(),
-				infos.get(infos.size() - 1).getUrl()));
 		for (int i = 0; i < infos.size(); i++) {
 			views.add(ViewFactory.getImageView(getActivity(), infos.get(i)
 					.getUrl()));
 		}
-		// 将第一个ImageView添加进来
-		views.add(ViewFactory
-				.getImageView(getActivity(), infos.get(0).getUrl()));
 
-		// 设置循环，在调用setData方法前调用
-		cycleViewPager.setCycle(true);
+		cycleViewPager.setData(views, infos, new ImageCycleViewListener() {
 
-		// 在加载数据前设置是否循环
-		cycleViewPager.setData(views, infos, null);
-		// 设置轮播
-		cycleViewPager.setWheel(true);
-
+			@Override
+			public void onImageClick(ADInfo info, int position, View imageView) {
+				// TODO Auto-generated method stub
+				ImageLoader.getInstance().displayImage(info.getUrl(),
+						(ImageView) imageView, R.drawable.icon_stub,
+						R.drawable.icon_error, Config.RGB_565);
+				Utilities.showToast("您点击了图片" + position, getActivity());
+			}
+		});
 		// 设置轮播时间，默认5000ms
 		cycleViewPager.setTime(2000);
 		// 设置圆点指示图标组居中显示，默认靠右
 		cycleViewPager.setIndicatorCenter();
-		
-		
+
 	}
 
 	@Override
@@ -185,17 +183,17 @@ public class TasklistFragment extends BaseFragment implements OnClickListener,
 	public void onItemClick(View view, int position) {
 		// TODO Auto-generated method stub
 		Utilities.showToast("您点击了条目" + position, getActivity());
-		Intent intent = new Intent(getActivity(),TaskDetailActivity.class);
+		Intent intent = new Intent(getActivity(), TaskDetailActivity.class);
 		Bundle bundle = new Bundle();
-		startActivity(intent,bundle);
+		startActivity(intent, bundle);
 	}
 
 	@Override
 	public void onLogItemClick(View view, int position) {
 		// TODO Auto-generated method stub
 		Utilities.showToast("您点击了条目" + position + "的log", getActivity());
-		Intent intent=new Intent(getActivity(),TaskInformationActivity.class);
-		Bundle bundle =new Bundle();
+		Intent intent = new Intent(getActivity(), TaskInformationActivity.class);
+		Bundle bundle = new Bundle();
 		startActivity(intent, bundle);
 	}
 

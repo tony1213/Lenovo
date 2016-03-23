@@ -5,10 +5,13 @@ import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -32,19 +35,33 @@ public class CycleViewPager extends Fragment implements OnPageChangeListener {
 	private FrameLayout viewPagerFragmentLayout;
 	private LinearLayout indicatorLayout; // 指示器
 	private BaseViewPager viewPager;
-	private BaseViewPager parentViewPager;
 	private ViewPagerAdapter adapter;
-	private CycleViewPagerHandler handler;
 	private int time = 5000; // 默认轮播时间
-	private int currentPosition = 0; // 轮播当前位置
-	private boolean isScrolling = false; // 滚动框是否滚动着
-	private boolean isCycle = false; // 是否循环
-	private boolean isWheel = false; // 是否轮播
-	private long releaseTime = 0; // 手指松开、页面不滚动时间，防止手机松开后短时间进行切换
-	private int WHEEL = 100; // 转动
-	private int WHEEL_WAIT = 101; // 等待
+	/**
+	 * 轮播图当前位置
+	 */
+	private final int SCROLLING = 0x0001;
+	private int currentPosition = 0;
 	private ImageCycleViewListener mImageCycleViewListener;
 	private List<ADInfo> infos;
+	private Handler handler = new Handler() {
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+			case SCROLLING:
+				currentPosition++;
+				Log.e("currentPosition", currentPosition + "");
+				if (currentPosition >= imageViews.size()) {
+					viewPager.setCurrentItem(0, true);//此处如果改为false，下面的onPageScrollStateChanged 将不会执行，handle将不会重新执行任务，
+				} else {
+					viewPager.setCurrentItem(currentPosition, true);
+				}
+				break;
+
+			default:
+				break;
+			}
+		};
+	};
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,34 +75,6 @@ public class CycleViewPager extends Fragment implements OnPageChangeListener {
 
 		viewPagerFragmentLayout = (FrameLayout) view
 				.findViewById(R.id.layout_viewager_content);
-
-		handler = new CycleViewPagerHandler(getActivity()) {
-
-			@Override
-			public void handleMessage(Message msg) {
-				super.handleMessage(msg);
-				if (msg.what == WHEEL && imageViews.size() != 0) {
-					if (!isScrolling) {
-						int max = imageViews.size() + 1;
-						int position = (currentPosition + 1)
-								% imageViews.size();
-						viewPager.setCurrentItem(position, true);
-						if (position == max) { // 最后一页时回到第一页
-							viewPager.setCurrentItem(1, false);
-						}
-					}
-
-					releaseTime = System.currentTimeMillis();
-					handler.removeCallbacks(runnable);
-					handler.postDelayed(runnable, time);
-					return;
-				}
-				if (msg.what == WHEEL_WAIT && imageViews.size() != 0) {
-					handler.removeCallbacks(runnable);
-					handler.postDelayed(runnable, time);
-				}
-			}
-		};
 
 		return view;
 	}
@@ -122,8 +111,7 @@ public class CycleViewPager extends Fragment implements OnPageChangeListener {
 
 		// 设置指示器
 		indicators = new ImageView[ivSize];
-		if (isCycle)
-			indicators = new ImageView[ivSize - 2];
+
 		indicatorLayout.removeAllViews();
 		for (int i = 0; i < indicators.length; i++) {
 			View view = LayoutInflater.from(getActivity()).inflate(
@@ -140,12 +128,10 @@ public class CycleViewPager extends Fragment implements OnPageChangeListener {
 		viewPager.setOffscreenPageLimit(3);
 		viewPager.setOnPageChangeListener(this);
 		viewPager.setAdapter(adapter);
-		if (showPosition < 0 || showPosition >= views.size())
-			showPosition = 0;
-		if (isCycle) {
-			showPosition = showPosition + 1;
-		}
+
 		viewPager.setCurrentItem(showPosition);
+
+		handler.postDelayed(runnable, time);
 
 	}
 
@@ -161,60 +147,12 @@ public class CycleViewPager extends Fragment implements OnPageChangeListener {
 		indicatorLayout.setLayoutParams(params);
 	}
 
-	/**
-	 * 是否循环，默认不开启，开启前，请将views的最前面与最后面各加入一个视图，用于循环
-	 * 
-	 * @param isCycle
-	 *            是否循环
-	 */
-	public void setCycle(boolean isCycle) {
-		this.isCycle = isCycle;
-	}
-
-	/**
-	 * 是否处于循环状态
-	 * 
-	 * @return
-	 */
-	public boolean isCycle() {
-		return isCycle;
-	}
-
-	/**
-	 * 设置是否轮播，默认不轮播,轮播一定是循环的
-	 * 
-	 * @param isWheel
-	 */
-	public void setWheel(boolean isWheel) {
-		this.isWheel = isWheel;
-		isCycle = true;
-		if (isWheel) {
-			handler.postDelayed(runnable, time);
-		}
-	}
-
-	/**
-	 * 是否处于轮播状态
-	 * 
-	 * @return
-	 */
-	public boolean isWheel() {
-		return isWheel;
-	}
-
 	final Runnable runnable = new Runnable() {
 
 		@Override
 		public void run() {
-			if (getActivity() != null && !getActivity().isFinishing()
-					&& isWheel) {
-				long now = System.currentTimeMillis();
-				// 检测上一次滑动时间与本次之间是否有触击(手滑动)操作，有的话等待下次轮播
-				if (now - releaseTime > time - 500) {
-					handler.sendEmptyMessage(WHEEL);
-				} else {
-					handler.sendEmptyMessage(WHEEL_WAIT);
-				}
+			if (getActivity() != null && !getActivity().isFinishing()) {
+				handler.sendEmptyMessage(SCROLLING);
 			}
 		}
 	};
@@ -281,24 +219,28 @@ public class CycleViewPager extends Fragment implements OnPageChangeListener {
 
 		@Override
 		public void destroyItem(ViewGroup container, int position, Object object) {
-			container.removeView((View) object);
+
+//			Log.e("==cycleViewPager  destroyItem==", position + "");
+			ImageView image = (ImageView) object;
+			container.removeView(image);
 		}
 
 		@Override
-		public View instantiateItem(ViewGroup container, final int position) {
-			ImageView v = imageViews.get(position);
+		public View instantiateItem(ViewGroup container, int position) {
+			ImageView v = imageViews.get(position % 4);
+//			Log.e("==instantiate==", position + "");
 			if (mImageCycleViewListener != null) {
 				v.setOnClickListener(new OnClickListener() {
 
 					@Override
 					public void onClick(View v) {
 						mImageCycleViewListener.onImageClick(
-								infos.get(currentPosition - 1),
-								currentPosition, v);
+								infos.get(currentPosition), currentPosition, v);
 					}
 				});
 			}
 			container.addView(v);
+
 			return v;
 		}
 
@@ -309,58 +251,30 @@ public class CycleViewPager extends Fragment implements OnPageChangeListener {
 	}
 
 	@Override
-	public void onPageScrollStateChanged(int arg0) {
-		if (arg0 == 1) { // viewPager在滚动
-			isScrolling = true;
+	public void onPageScrollStateChanged(int state) {
+		
+//		Log.e("==onPageScrollState==", "==onPageScrollState==");
+		if (state == ViewPager.SCROLL_STATE_DRAGGING) { // viewPager在滚动
+			handler.removeCallbacks(runnable);// 当拖动时取消之前轮播的handle任务
 			return;
-		} else if (arg0 == 0) { // viewPager滚动结束
-			if (parentViewPager != null)
-				parentViewPager.setScrollable(true);
-
-			releaseTime = System.currentTimeMillis();
-
-			viewPager.setCurrentItem(currentPosition, false);
+		} else if (state == ViewPager.SCROLL_STATE_IDLE) { // viewPager滚动结束
+			handler.postDelayed(runnable, time);// 滚动结束后再次发送handle请求下一次轮播
+		} else if (state == ViewPager.SCROLL_STATE_SETTLING) {
 
 		}
-		isScrolling = false;
+
 	}
 
 	@Override
-	public void onPageScrolled(int arg0, float arg1, int arg2) {
+	public void onPageScrolled(int position, float positionOffset,
+			int positionOffsetPixels) {
 	}
 
 	@Override
-	public void onPageSelected(int arg0) {
-		int max = imageViews.size() - 1;
-		int position = arg0;
-		currentPosition = arg0;
-		if (isCycle) {
-			if (arg0 == 0) {
-				currentPosition = max - 1;
-			} else if (arg0 == max) {
-				currentPosition = 1;
-			}
-			position = currentPosition - 1;
-		}
-		setIndicator(position);
-	}
-
-	/**
-	 * 设置viewpager是否可以滚动
-	 * 
-	 * @param enable
-	 */
-	public void setScrollable(boolean enable) {
-		viewPager.setScrollable(enable);
-	}
-
-	/**
-	 * 返回当前位置,循环时需要注意返回的position包含之前在views最前方与最后方加入的视图，即当前页面试图在views集合的位置
-	 * 
-	 * @return
-	 */
-	public int getCurrentPostion() {
-		return currentPosition;
+	public void onPageSelected(int position) {
+//		Log.e("==onPageSelected==", "==onPageSelected==");
+		currentPosition = position % 4;
+		setIndicator(currentPosition);
 	}
 
 	/**
@@ -373,18 +287,8 @@ public class CycleViewPager extends Fragment implements OnPageChangeListener {
 		for (int i = 0; i < indicators.length; i++) {
 			indicators[i].setBackgroundResource(R.drawable.icon_point);
 		}
-		if (indicators.length > selectedPosition)
-			indicators[selectedPosition]
-					.setBackgroundResource(R.drawable.icon_point_pre);
-	}
-
-	/**
-	 * 如果当前页面嵌套在另一个viewPager中，为了在进行滚动时阻断父ViewPager滚动，可以 阻止父ViewPager滑动事件
-	 * 父ViewPager需要实现ParentViewPager中的setScrollable方法
-	 */
-	public void disableParentViewPagerTouchEvent(BaseViewPager parentViewPager) {
-		if (parentViewPager != null)
-			parentViewPager.setScrollable(false);
+		indicators[selectedPosition]
+				.setBackgroundResource(R.drawable.icon_point_pre);
 	}
 
 	/**
@@ -400,6 +304,6 @@ public class CycleViewPager extends Fragment implements OnPageChangeListener {
 		 * @param position
 		 * @param imageView
 		 */
-		public void onImageClick(ADInfo info, int postion, View imageView);
+		public void onImageClick(ADInfo info, int position, View imageView);
 	}
 }
