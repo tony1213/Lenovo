@@ -49,7 +49,7 @@ public class CycleViewPager extends Fragment implements OnPageChangeListener {
 			switch (msg.what) {
 			case SCROLLING:
 				currentPosition++;
-				Log.e("currentPosition", currentPosition + "");
+//				Log.e("currentPosition", currentPosition + "");
 				if (currentPosition >= imageViews.size()) {
 					viewPager.setCurrentItem(0, true);//此处如果改为false，下面的onPageScrollStateChanged 将不会执行，handle将不会重新执行任务，
 				} else {

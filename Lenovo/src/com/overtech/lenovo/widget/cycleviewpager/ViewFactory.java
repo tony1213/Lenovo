@@ -24,7 +24,7 @@ public class ViewFactory {
 		imageView.setLayoutParams(params);
 		imageView.setScaleType(ScaleType.CENTER_CROP);
 //		imageView.setAdjustViewBounds(true);
-		Log.e("imageView对象地址", imageView.toString());
+//		Log.e("imageView对象地址", imageView.toString());
 		ImageLoader.getInstance().displayImage(url, imageView,
 				R.drawable.icon_stub, R.drawable.icon_error, Config.RGB_565);
 		return imageView;
