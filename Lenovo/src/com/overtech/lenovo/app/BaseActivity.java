@@ -1,11 +1,12 @@
 package com.overtech.lenovo.app;
 
-import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.content.pm.ActivityInfo;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+
 import com.overtech.lenovo.widget.dialog.NiftyDialogBuilder;
 
-public abstract class BaseActivity extends FragmentActivity {
+public abstract class BaseActivity extends AppCompatActivity {
 	//Test git ignore
 
 	public NiftyDialogBuilder dialogBuilder;

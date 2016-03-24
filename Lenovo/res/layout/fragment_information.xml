@@ -5,6 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+    <!-- 原导航栏 -->
+    <!--
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="56dp"
@@ -25,6 +27,7 @@
             android:layout_marginTop="22dp"
             android:src="@drawable/icon_arrow_bottom" />
     </RelativeLayout>
+    -->
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_information"

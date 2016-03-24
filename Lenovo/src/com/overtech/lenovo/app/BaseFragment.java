@@ -31,6 +31,7 @@ public abstract class BaseFragment extends Fragment implements
 	public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onActivityCreated(savedInstanceState);
+		setHasOptionsMenu(true);//如果让fragment使用菜单此处为true
 		afterCreate(savedInstanceState);
 	}
 	protected abstract int getLayoutId();

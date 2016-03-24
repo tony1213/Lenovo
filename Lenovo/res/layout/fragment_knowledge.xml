@@ -4,6 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+    <!-- 原导航栏 -->
+    <!--
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="64dp"
@@ -22,18 +24,18 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="6dp"
-            android:textSize="20sp"
             android:text="知识"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="20sp" />
 
         <EditText
             android:layout_width="240dp"
             android:layout_height="21dp"
             android:layout_marginLeft="29dp"
             android:layout_marginTop="28dp"
-            android:drawableLeft="@drawable/icon_knowledge_search"
             android:layout_toRightOf="@id/iv_icon_common_back"
             android:background="@drawable/shape_tasklist_title_core_bg"
+            android:drawableLeft="@drawable/icon_knowledge_search"
             android:hint="输入POS机维修"
             android:textColorHint="@color/white" />
 
@@ -45,6 +47,7 @@
             android:layout_marginTop="30dp"
             android:src="@drawable/icon_arrow_bottom" />
     </RelativeLayout>
+    -->
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -4,12 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.overtech.lenovo.R;
 import com.overtech.lenovo.app.BaseFragment;
+import com.overtech.lenovo.app.activity.MainActivity;
 import com.overtech.lenovo.app.activity.adapter.InformationAdapter;
 import com.overtech.lenovo.app.activity.adapter.InformationAdapter.OnItemButtonClickListener;
 import com.overtech.lenovo.entity.information.webservice.Information;
@@ -64,5 +70,30 @@ public class InformationFragment extends BaseFragment {
 		mInformation.addItemDecoration(new DividerItemDecoration(getActivity(),
 				LinearLayoutManager.VERTICAL));
 		mInformation.setAdapter(adapter);
+	}
+
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		// TODO Auto-generated method stub
+		inflater.inflate(R.menu.menu_information, menu);
+		super.onCreateOptionsMenu(menu, inflater);
+	}
+
+	@Override
+	public void onPrepareOptionsMenu(Menu menu) {
+		// TODO Auto-generated method stub
+		ActionBar actionBar = ((MainActivity) getActivity())
+				.getSupportActionBar();
+		actionBar.setTitle("信息");
+		Toolbar toolbar = (Toolbar) getActivity().findViewById(
+				R.id.toolbar_main);
+		toolbar.setNavigationIcon(R.drawable.icon_tab_information_selected);
+		super.onPrepareOptionsMenu(menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		return super.onOptionsItemSelected(item);
 	}
 }

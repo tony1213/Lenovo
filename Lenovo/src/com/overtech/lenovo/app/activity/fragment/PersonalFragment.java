@@ -4,6 +4,11 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -11,6 +16,7 @@ import android.widget.LinearLayout;
 
 import com.overtech.lenovo.R;
 import com.overtech.lenovo.app.BaseFragment;
+import com.overtech.lenovo.app.activity.MainActivity;
 import com.overtech.lenovo.app.activity.personal.PersonalSettingActivity;
 import com.overtech.lenovo.picasso.Transformation;
 import com.overtech.lenovo.utils.ImageCacheUtils;
@@ -31,8 +37,8 @@ public class PersonalFragment extends BaseFragment implements OnClickListener {
 	protected void afterCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		mAvator = (ImageView) mRootView.findViewById(R.id.iv_avator);
-		setting=(LinearLayout)mRootView.findViewById(R.id.ll_personal_setting);
-		
+		setting = (LinearLayout) mRootView
+				.findViewById(R.id.ll_personal_setting);
 		ImageLoader.getInstance().displayImage(imageUrl, mAvator,
 				R.drawable.icon_avator_default, R.drawable.ic_launcher,
 				new Transformation() {
@@ -49,8 +55,31 @@ public class PersonalFragment extends BaseFragment implements OnClickListener {
 						return null;
 					}
 				}, Config.RGB_565);
-		
+
 		setting.setOnClickListener(this);
+	}
+
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		// TODO Auto-generated method stub
+		super.onCreateOptionsMenu(menu, inflater);
+	}
+
+	@Override
+	public void onPrepareOptionsMenu(Menu menu) {
+		// TODO Auto-generated method stub
+		ActionBar actionBar = ((MainActivity) getActivity())
+				.getSupportActionBar();
+		actionBar.setTitle("我的");
+		Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar_main);
+		toolbar.setNavigationIcon(R.drawable.icon_tab_personal_selected);
+		super.onPrepareOptionsMenu(menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		return super.onOptionsItemSelected(item);
 	}
 
 	@Override
@@ -58,9 +87,10 @@ public class PersonalFragment extends BaseFragment implements OnClickListener {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.ll_personal_setting:
-			Intent intent = new Intent(getActivity(),PersonalSettingActivity.class);
+			Intent intent = new Intent(getActivity(),
+					PersonalSettingActivity.class);
 			startActivity(intent);
-			
+
 			break;
 
 		default:

@@ -3,6 +3,13 @@ package com.overtech.lenovo.app.activity.fragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -10,6 +17,7 @@ import android.widget.ListView;
 
 import com.overtech.lenovo.R;
 import com.overtech.lenovo.app.BaseFragment;
+import com.overtech.lenovo.app.activity.MainActivity;
 import com.overtech.lenovo.app.activity.adapter.KnowledgeAdapter;
 import com.overtech.lenovo.app.activity.knowledge.CommunicateFragment;
 import com.overtech.lenovo.app.activity.knowledge.ConfigFragment;
@@ -19,6 +27,7 @@ import com.overtech.lenovo.app.activity.knowledge.NetFragment;
 import com.overtech.lenovo.app.activity.knowledge.SoftWareFragment;
 import com.overtech.lenovo.app.activity.knowledge.WorkFragment;
 import com.overtech.lenovo.utils.FragmentUtils;
+import com.overtech.lenovo.utils.Utilities;
 
 public class KnowledgeFragment extends BaseFragment {
 	private ListView konwledgeTitle;
@@ -38,6 +47,7 @@ public class KnowledgeFragment extends BaseFragment {
 	@Override
 	protected void afterCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
+
 		konwledgeTitle = (ListView) mRootView
 				.findViewById(R.id.lv_konwledge_title);
 		fragmentManager = this.getChildFragmentManager();
@@ -52,11 +62,46 @@ public class KnowledgeFragment extends BaseFragment {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				// TODO Auto-generated method stub
-				
+
 				currentFragment = FragmentUtils.switchFragment(fragmentManager,
 						R.id.fl_knowledge_container, currentFragment,
 						clazz[arg2], null, false);
 			}
 		});
+	}
+
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		// TODO Auto-generated method stub
+		inflater.inflate(R.menu.menu_knowledge, menu);
+		// SearchView searchView=(SearchView)
+		// MenuItemCompat.getActionView(menu.findItem(R.id.menu_search));
+
+		super.onCreateOptionsMenu(menu, inflater);
+	}
+
+	@Override
+	public void onPrepareOptionsMenu(Menu menu) {
+		// TODO Auto-generated method stub
+		ActionBar actionBar = ((MainActivity) getActivity())
+				.getSupportActionBar();
+		actionBar.setTitle("知识");
+		Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar_main);
+		toolbar.setNavigationIcon(R.drawable.icon_tab_knowledge_selected);
+		super.onPrepareOptionsMenu(menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		switch (item.getItemId()) {
+		case R.id.menu_search:
+			Utilities.showToast("您点击了搜索", getActivity());
+			break;
+
+		default:
+			break;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 }

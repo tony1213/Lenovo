@@ -6,8 +6,13 @@ import java.util.List;
 import android.content.Intent;
 import android.graphics.Bitmap.Config;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -15,6 +20,7 @@ import android.widget.TextView;
 
 import com.overtech.lenovo.R;
 import com.overtech.lenovo.app.BaseFragment;
+import com.overtech.lenovo.app.activity.MainActivity;
 import com.overtech.lenovo.app.activity.adapter.TaskListAdapter;
 import com.overtech.lenovo.app.activity.adapter.TaskListAdapter.OnItemClickListener;
 import com.overtech.lenovo.app.activity.task.TaskDetailActivity;
@@ -58,23 +64,62 @@ public class TasklistFragment extends BaseFragment implements OnClickListener,
 	protected void afterCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		Utilities.showToast("工单", getActivity());
-		mTaskAll = (TextView) mRootView.findViewById(R.id.tv_task_all);
-		mTaskReceive = (TextView) mRootView.findViewById(R.id.tv_task_receive);
-		mTaskOrder = (TextView) mRootView.findViewById(R.id.tv_task_order);
-		mTaskVisit = (TextView) mRootView.findViewById(R.id.tv_task_visit);
-		mTaskAccount = (TextView) mRootView.findViewById(R.id.tv_task_account);
-		mTaskEvaluation = (TextView) mRootView
-				.findViewById(R.id.tv_task_evaluation);
+
+//		mTaskAll = (TextView) mRootView.findViewById(R.id.tv_task_all);
+//		mTaskReceive = (TextView) mRootView.findViewById(R.id.tv_task_receive);
+//		mTaskOrder = (TextView) mRootView.findViewById(R.id.tv_task_order);
+//		mTaskVisit = (TextView) mRootView.findViewById(R.id.tv_task_visit);
+//		mTaskAccount = (TextView) mRootView.findViewById(R.id.tv_task_account);
+//		mTaskEvaluation = (TextView) mRootView
+//				.findViewById(R.id.tv_task_evaluation);
 		mRecyclerView = (RecyclerView) mRootView
 				.findViewById(R.id.recyclerView);
+
 		initialCycleViewPager();
 		initRecyclerView();
-		mTaskAll.setOnClickListener(this);
-		mTaskReceive.setOnClickListener(this);
-		mTaskOrder.setOnClickListener(this);
-		mTaskVisit.setOnClickListener(this);
-		mTaskAccount.setOnClickListener(this);
-		mTaskEvaluation.setOnClickListener(this);
+
+//		mTaskAll.setOnClickListener(this);
+//		mTaskReceive.setOnClickListener(this);
+//		mTaskOrder.setOnClickListener(this);
+//		mTaskVisit.setOnClickListener(this);
+//		mTaskAccount.setOnClickListener(this);
+//		mTaskEvaluation.setOnClickListener(this);
+
+	}
+
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		// TODO Auto-generated method stub
+		inflater.inflate(R.menu.menu_tasklist, menu);
+		super.onCreateOptionsMenu(menu, inflater);
+	}
+
+	@Override
+	public void onPrepareOptionsMenu(Menu menu) {
+		// TODO Auto-generated method stub
+		ActionBar actionBar = ((MainActivity) getActivity())
+				.getSupportActionBar();
+		actionBar.setTitle("工单");
+		Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar_main);
+		toolbar.setNavigationIcon(R.drawable.icon_tab_tasklist_selected);
+		super.onPrepareOptionsMenu(menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		switch (item.getItemId()) {
+		case R.id.menu_all:
+			Utilities.showToast("所有", getActivity());
+			break;
+		case R.id.menu2:
+			Utilities.showToast("菜单2", getActivity());
+		case R.id.menu3:
+			Utilities.showToast("菜单3", getActivity());
+		default:
+			break;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 
 	private void initRecyclerView() {
@@ -148,35 +193,35 @@ public class TasklistFragment extends BaseFragment implements OnClickListener,
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		mTaskAll.setSelected(false);
-		mTaskReceive.setSelected(false);
-		mTaskOrder.setSelected(false);
-		mTaskVisit.setSelected(false);
-		mTaskAccount.setSelected(false);
-		mTaskEvaluation.setSelected(false);
-		switch (v.getId()) {
-		case R.id.tv_task_all:
-			mTaskAll.setSelected(true);
-			break;
-		case R.id.tv_task_receive:
-			mTaskReceive.setSelected(true);
-			break;
-		case R.id.tv_task_order:
-			mTaskOrder.setSelected(true);
-			break;
-		case R.id.tv_task_visit:
-			mTaskVisit.setSelected(true);
-			break;
-		case R.id.tv_task_account:
-			mTaskAccount.setSelected(true);
-			break;
-		case R.id.tv_task_evaluation:
-			mTaskEvaluation.setSelected(true);
-			break;
-
-		default:
-			break;
-		}
+//		mTaskAll.setSelected(false);
+//		mTaskReceive.setSelected(false);
+//		mTaskOrder.setSelected(false);
+//		mTaskVisit.setSelected(false);
+//		mTaskAccount.setSelected(false);
+//		mTaskEvaluation.setSelected(false);
+//		switch (v.getId()) {
+//		case R.id.tv_task_all:
+//			mTaskAll.setSelected(true);
+//			break;
+//		case R.id.tv_task_receive:
+//			mTaskReceive.setSelected(true);
+//			break;
+//		case R.id.tv_task_order:
+//			mTaskOrder.setSelected(true);
+//			break;
+//		case R.id.tv_task_visit:
+//			mTaskVisit.setSelected(true);
+//			break;
+//		case R.id.tv_task_account:
+//			mTaskAccount.setSelected(true);
+//			break;
+//		case R.id.tv_task_evaluation:
+//			mTaskEvaluation.setSelected(true);
+//			break;
+//
+//		default:
+//			break;
+//		}
 	}
 
 	@Override

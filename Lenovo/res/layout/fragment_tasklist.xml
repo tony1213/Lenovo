@@ -4,6 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+    <!-- 原导航栏 -->
+    <!--
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="56dp"
@@ -116,6 +118,7 @@
             </RelativeLayout>
         </RelativeLayout>
     </LinearLayout>
+    -->
 
     <fragment
         android:id="@+id/fragment_cycle_viewpager_content"

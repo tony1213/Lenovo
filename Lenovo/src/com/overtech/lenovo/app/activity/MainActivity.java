@@ -3,9 +3,12 @@ package com.overtech.lenovo.app.activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 import com.overtech.lenovo.R;
 import com.overtech.lenovo.app.BaseActivity;
@@ -15,13 +18,14 @@ import com.overtech.lenovo.app.activity.fragment.KnowledgeFragment;
 import com.overtech.lenovo.app.activity.fragment.PersonalFragment;
 import com.overtech.lenovo.app.activity.fragment.TasklistFragment;
 import com.overtech.lenovo.utils.FragmentUtils;
+import com.overtech.lenovo.utils.Utilities;
 import com.overtech.lenovo.widget.TabView.TabView;
 import com.overtech.lenovo.widget.TabView.TabView.OnTabChangeListener;
 import com.overtech.lenovo.widget.dialog.Effectstype;
 
 public class MainActivity extends BaseActivity implements OnTabChangeListener,
 		FragmentCallback {
-
+	private Toolbar toolbar;
 	private FragmentManager mFragmentManager;
 	private Fragment mCurrentFragment;
 	private TabView mTabView;
@@ -40,10 +44,20 @@ public class MainActivity extends BaseActivity implements OnTabChangeListener,
 	@Override
 	protected void afterCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
+		toolbar = (Toolbar) findViewById(R.id.toolbar_main);
+		setSupportActionBar(toolbar);
+		ActionBar actionBar = getSupportActionBar();
+//		actionBar.setTitle("");
 		mFragmentManager = getSupportFragmentManager();
 		mCurrentTabIndex = 0;
 		mPreviousTabIndex = -1;
 		setupViews();
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// TODO Auto-generated method stub
+		return super.onCreateOptionsMenu(menu);
 	}
 
 	private void setupViews() {
