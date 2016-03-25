@@ -6,6 +6,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.SearchView;
+import android.support.v7.widget.SearchView.OnCloseListener;
+import android.support.v7.widget.SearchView.OnQueryTextListener;
+import android.support.v7.widget.SearchView.OnSuggestionListener;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -74,9 +77,39 @@ public class KnowledgeFragment extends BaseFragment {
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		// TODO Auto-generated method stub
 		inflater.inflate(R.menu.menu_knowledge, menu);
-		// SearchView searchView=(SearchView)
-		// MenuItemCompat.getActionView(menu.findItem(R.id.menu_search));
-
+		SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu
+				.findItem(R.id.menu_search));
+		
+		
+		searchView.setIconifiedByDefault(true);
+		
+		
+		searchView.setOnCloseListener(new OnCloseListener() {
+			
+			@Override
+			public boolean onClose() {
+				// TODO Auto-generated method stub
+				Utilities.showToast("close=======", getContext());
+				return false;
+			}
+		});
+		searchView.setOnQueryTextListener(new OnQueryTextListener() {
+			
+			@Override
+			public boolean onQueryTextSubmit(String arg0) {
+				// TODO Auto-generated method stub
+				Utilities.showToast("query_text_submit====", getContext());
+				return false;
+			}
+			
+			@Override
+			public boolean onQueryTextChange(String arg0) {
+				// TODO Auto-generated method stub
+				Utilities.showToast("query_text_change====", getContext());
+				return false;
+			}
+		});
+		
 		super.onCreateOptionsMenu(menu, inflater);
 	}
 
@@ -86,7 +119,8 @@ public class KnowledgeFragment extends BaseFragment {
 		ActionBar actionBar = ((MainActivity) getActivity())
 				.getSupportActionBar();
 		actionBar.setTitle("知识");
-		Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar_main);
+		Toolbar toolbar = (Toolbar) getActivity().findViewById(
+				R.id.toolbar_main);
 		toolbar.setNavigationIcon(R.drawable.icon_tab_knowledge_selected);
 		super.onPrepareOptionsMenu(menu);
 	}

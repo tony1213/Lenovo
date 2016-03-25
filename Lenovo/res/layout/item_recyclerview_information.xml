@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="wrap_content"
     android:paddingRight="35dp" >
 
     <ImageView
@@ -36,7 +36,7 @@
     <GridView
         android:id="@+id/gv_information_picture"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:layout_below="@id/tv_information_description"
         android:layout_marginLeft="67dp"
         android:numColumns="3" >

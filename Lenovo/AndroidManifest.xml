@@ -28,6 +28,9 @@
         <activity android:name="com.overtech.lenovo.app.activity.task.TaskInformationActivity" />
         <activity android:name="com.overtech.lenovo.app.activity.task.TaskDetailActivity" />
         <activity android:name="com.overtech.lenovo.app.activity.personal.PersonalSettingActivity" >
+            <intent-filter >
+                <action android:name="www.overtech.com"/>
+            </intent-filter>
         </activity>
     </application>
 

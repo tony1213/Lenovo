@@ -39,7 +39,7 @@ public class DividerItemDecoration extends ItemDecoration {
 	@Override
 	public void onDraw(Canvas c, RecyclerView parent) {
 		super.onDraw(c, parent);
-		Log.v("recyclerview - itemdecoration", "onDraw()");
+//		Log.v("recyclerview - itemdecoration", "onDraw()");
 
 		if (mOrientation == VERTICAL_LIST) {
 			drawVertical(c, parent);

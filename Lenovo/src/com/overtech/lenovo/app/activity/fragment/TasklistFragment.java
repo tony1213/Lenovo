@@ -5,17 +5,23 @@ import java.util.List;
 
 import android.content.Intent;
 import android.graphics.Bitmap.Config;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.RecyclerView.Recycler;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import android.widget.TextView;
 
 import com.overtech.lenovo.R;
@@ -49,10 +55,10 @@ public class TasklistFragment extends BaseFragment implements OnClickListener,
 	private List<ImageView> views = new ArrayList<ImageView>();
 	private List<ADInfo> infos = new ArrayList<ADInfo>();
 	private String[] imageUrls = {
-			"http://www.pp3.cn/uploads/allimg/111125/1612125591-0.jpg",
-			"http://www.pp3.cn/uploads/allimg/111215/1033042330-0.jpg",
-			"http://m2.quanjing.com/2m/aflrf001/jjig000030.jpg",
-			"http://pic1.bbzhi.com/jieribizhi/baiseshengdanzhutisheying/holiday_2008_white_christmas_26646_8.jpg", };
+			"http://tupian.enterdesk.com/2012/1103/gha/1/enterdesk%20%2812%29.jpg",
+			"http://img1.3lian.com/img013/v4/81/d/71.jpg",
+			"http://img1.3lian.com/img013/v4/81/d/66.jpg",
+			"http://pic20.nipic.com/20120409/9188247_091601398179_2.jpg", };
 
 	@Override
 	protected int getLayoutId() {
@@ -65,25 +71,27 @@ public class TasklistFragment extends BaseFragment implements OnClickListener,
 		// TODO Auto-generated method stub
 		Utilities.showToast("工单", getActivity());
 
-//		mTaskAll = (TextView) mRootView.findViewById(R.id.tv_task_all);
-//		mTaskReceive = (TextView) mRootView.findViewById(R.id.tv_task_receive);
-//		mTaskOrder = (TextView) mRootView.findViewById(R.id.tv_task_order);
-//		mTaskVisit = (TextView) mRootView.findViewById(R.id.tv_task_visit);
-//		mTaskAccount = (TextView) mRootView.findViewById(R.id.tv_task_account);
-//		mTaskEvaluation = (TextView) mRootView
-//				.findViewById(R.id.tv_task_evaluation);
+		// mTaskAll = (TextView) mRootView.findViewById(R.id.tv_task_all);
+		// mTaskReceive = (TextView)
+		// mRootView.findViewById(R.id.tv_task_receive);
+		// mTaskOrder = (TextView) mRootView.findViewById(R.id.tv_task_order);
+		// mTaskVisit = (TextView) mRootView.findViewById(R.id.tv_task_visit);
+		// mTaskAccount = (TextView)
+		// mRootView.findViewById(R.id.tv_task_account);
+		// mTaskEvaluation = (TextView) mRootView
+		// .findViewById(R.id.tv_task_evaluation);
 		mRecyclerView = (RecyclerView) mRootView
 				.findViewById(R.id.recyclerView);
 
-		initialCycleViewPager();
 		initRecyclerView();
+		initialCycleViewPager();
 
-//		mTaskAll.setOnClickListener(this);
-//		mTaskReceive.setOnClickListener(this);
-//		mTaskOrder.setOnClickListener(this);
-//		mTaskVisit.setOnClickListener(this);
-//		mTaskAccount.setOnClickListener(this);
-//		mTaskEvaluation.setOnClickListener(this);
+		// mTaskAll.setOnClickListener(this);
+		// mTaskReceive.setOnClickListener(this);
+		// mTaskOrder.setOnClickListener(this);
+		// mTaskVisit.setOnClickListener(this);
+		// mTaskAccount.setOnClickListener(this);
+		// mTaskEvaluation.setOnClickListener(this);
 
 	}
 
@@ -100,7 +108,8 @@ public class TasklistFragment extends BaseFragment implements OnClickListener,
 		ActionBar actionBar = ((MainActivity) getActivity())
 				.getSupportActionBar();
 		actionBar.setTitle("工单");
-		Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar_main);
+		Toolbar toolbar = (Toolbar) getActivity().findViewById(
+				R.id.toolbar_main);
 		toolbar.setNavigationIcon(R.drawable.icon_tab_tasklist_selected);
 		super.onPrepareOptionsMenu(menu);
 	}
@@ -116,10 +125,21 @@ public class TasklistFragment extends BaseFragment implements OnClickListener,
 			Utilities.showToast("菜单2", getActivity());
 		case R.id.menu3:
 			Utilities.showToast("菜单3", getActivity());
+		case R.id.menu7:
+			showAnimate(item);
 		default:
 			break;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	private void showAnimate(MenuItem menuItem) {
+		ImageView image = new ImageView(getContext());
+		image.setScaleType(ScaleType.CENTER_CROP);
+		image.setImageResource(R.drawable.anim_task_notification);
+		menuItem.setActionView(image);
+		AnimationDrawable animation = (AnimationDrawable) image.getDrawable();
+		animation.start();
 	}
 
 	private void initRecyclerView() {
@@ -143,13 +163,29 @@ public class TasklistFragment extends BaseFragment implements OnClickListener,
 		Task task5 = new Task("", "20160309-0005", "2016-03-15  15:30", "网络问题",
 				"设备无法正常使用", "携带装备", "langitude", "longitude", "4小时上门", "0",
 				"接单");
+		Task task6 = new Task("", "20160309-0006", "2016-03-16  16:30", "网络问题",
+				"设备无法正常使用", "携带装备", "langitude", "longitude", "3小时上门", "0",
+				"评价");
+		Task task7 = new Task("", "20160309-0007", "2016-03-17  17:30", "网络问题",
+				"设备无法正常使用", "携带装备", "langitude", "longitude", "1小时上门", "0",
+				"接单");
+		Task task8 = new Task("", "20160309-0008", "2016-03-18  18:30", "网络问题",
+				"设备无法正常使用", "携带装备", "langitude", "longitude", "3小时上门", "0",
+				"评价");
 
 		datas.add(task1);
 		datas.add(task2);
 		datas.add(task3);
 		datas.add(task4);
 		datas.add(task5);
-		adapter = new TaskListAdapter(getActivity(), datas);
+		datas.add(task6);
+		datas.add(task7);
+		datas.add(task8);
+
+		adapter = new TaskListAdapter(getActivity());
+		adapter.setDatas(datas);
+		adapter.setHeader(LayoutInflater.from(getContext()).inflate(
+				R.layout.item_recyclerview_header, null));
 		adapter.setOnItemClickListener(this);
 		mRecyclerView.setAdapter(adapter);
 
@@ -158,7 +194,11 @@ public class TasklistFragment extends BaseFragment implements OnClickListener,
 	private void initialCycleViewPager() {
 		// TODO Auto-generated method stub
 		ImageLoader.getInstance().initContext(getActivity());// 初始化ImageView;
-		cycleViewPager = (CycleViewPager) getChildFragmentManager()// 绝对不能用getActivity().getSupportFragmentManager()
+		// cycleViewPager = (CycleViewPager) getChildFragmentManager()//
+		// 绝对不能用getActivity().getSupportFragmentManager()
+		// .findFragmentById(R.id.fragment_cycle_viewpager_content);//因为fragment标签不再在fragment中，所以此处不再需要
+
+		cycleViewPager = (CycleViewPager) getFragmentManager()
 				.findFragmentById(R.id.fragment_cycle_viewpager_content);
 		for (int i = 0; i < imageUrls.length; i++) {
 			ADInfo info = new ADInfo();
@@ -193,35 +233,35 @@ public class TasklistFragment extends BaseFragment implements OnClickListener,
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-//		mTaskAll.setSelected(false);
-//		mTaskReceive.setSelected(false);
-//		mTaskOrder.setSelected(false);
-//		mTaskVisit.setSelected(false);
-//		mTaskAccount.setSelected(false);
-//		mTaskEvaluation.setSelected(false);
-//		switch (v.getId()) {
-//		case R.id.tv_task_all:
-//			mTaskAll.setSelected(true);
-//			break;
-//		case R.id.tv_task_receive:
-//			mTaskReceive.setSelected(true);
-//			break;
-//		case R.id.tv_task_order:
-//			mTaskOrder.setSelected(true);
-//			break;
-//		case R.id.tv_task_visit:
-//			mTaskVisit.setSelected(true);
-//			break;
-//		case R.id.tv_task_account:
-//			mTaskAccount.setSelected(true);
-//			break;
-//		case R.id.tv_task_evaluation:
-//			mTaskEvaluation.setSelected(true);
-//			break;
-//
-//		default:
-//			break;
-//		}
+		// mTaskAll.setSelected(false);
+		// mTaskReceive.setSelected(false);
+		// mTaskOrder.setSelected(false);
+		// mTaskVisit.setSelected(false);
+		// mTaskAccount.setSelected(false);
+		// mTaskEvaluation.setSelected(false);
+		// switch (v.getId()) {
+		// case R.id.tv_task_all:
+		// mTaskAll.setSelected(true);
+		// break;
+		// case R.id.tv_task_receive:
+		// mTaskReceive.setSelected(true);
+		// break;
+		// case R.id.tv_task_order:
+		// mTaskOrder.setSelected(true);
+		// break;
+		// case R.id.tv_task_visit:
+		// mTaskVisit.setSelected(true);
+		// break;
+		// case R.id.tv_task_account:
+		// mTaskAccount.setSelected(true);
+		// break;
+		// case R.id.tv_task_evaluation:
+		// mTaskEvaluation.setSelected(true);
+		// break;
+		//
+		// default:
+		// break;
+		// }
 	}
 
 	@Override

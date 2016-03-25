@@ -23,10 +23,12 @@ public class TaskListAdapter extends Adapter<TaskListAdapter.MyViewHolder> {
 	private Context ctx;
 	private List<Task> datas;
 	private OnItemClickListener mClickListener;
+	public static final int TYPE_HEADER = 0;
+	public static final int TYPE_NORMAL = 1;
+	private View headerView;
 
-	public TaskListAdapter(Context ctx, List<Task> datas) {
+	public TaskListAdapter(Context ctx) {
 		this.ctx = ctx;
-		this.datas = datas;
 	}
 
 	public void setOnItemClickListener(OnItemClickListener listener) {
@@ -56,16 +58,44 @@ public class TaskListAdapter extends Adapter<TaskListAdapter.MyViewHolder> {
 		void onButtonItemClick(View view, int position);
 	}
 
-	@Override
-	public int getItemCount() {
-		// TODO Auto-generated method stub
-		return datas.size();
+	public void setHeader(View headerView) {
+		this.headerView = headerView;
+	}
+
+	public void setDatas(List<Task> datas) {
+		this.datas = datas;
 	}
 
 	@Override
-	public void onBindViewHolder(final MyViewHolder holder, int position) {
+	public int getItemCount() {
 		// TODO Auto-generated method stub
-		Task task = datas.get(position);
+		return headerView == null ? datas.size() : datas.size() + 1;
+	}
+
+	@Override
+	public int getItemViewType(int position) {
+		// TODO Auto-generated method stub
+		if (headerView == null)
+			return TYPE_NORMAL;
+		if (headerView != null && position == 0) {
+			return TYPE_HEADER;
+		} else {
+			return TYPE_NORMAL;
+		}
+	}
+
+	public int getRealPosition(MyViewHolder holder) {
+		return headerView == null ? holder.getLayoutPosition() : holder
+				.getLayoutPosition() - 1;
+	}
+
+	@Override
+	public void onBindViewHolder(MyViewHolder holder, int position) {
+		// TODO Auto-generated method stub
+		if (getItemViewType(position) == TYPE_HEADER)
+			return;
+		final int pos = getRealPosition(holder);
+		Task task = datas.get(pos);
 		if (new Random().nextFloat() > 0.5) {
 			Picasso.with(ctx).load(R.drawable.icon_tasklist_default1)
 					.into(holder.taskLogo);
@@ -98,7 +128,6 @@ public class TaskListAdapter extends Adapter<TaskListAdapter.MyViewHolder> {
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-					int pos = holder.getLayoutPosition();
 					mClickListener.onLogItemClick(v, pos);
 				}
 			});
@@ -107,7 +136,6 @@ public class TaskListAdapter extends Adapter<TaskListAdapter.MyViewHolder> {
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-					int pos = holder.getLayoutPosition();
 					mClickListener.onButtonItemClick(v, pos);
 				}
 			});
@@ -116,7 +144,6 @@ public class TaskListAdapter extends Adapter<TaskListAdapter.MyViewHolder> {
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-					int pos = holder.getLayoutPosition();
 					mClickListener.onItemClick(v, pos);
 				}
 			});
@@ -127,6 +154,9 @@ public class TaskListAdapter extends Adapter<TaskListAdapter.MyViewHolder> {
 	@Override
 	public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 		// TODO Auto-generated method stub
+		if (headerView != null && viewType == TYPE_HEADER) {
+			return new MyViewHolder(headerView);
+		}
 		MyViewHolder vh = new MyViewHolder(LayoutInflater.from(ctx).inflate(
 				R.layout.item_recyclerview_tasklist, parent, false));
 
@@ -150,6 +180,8 @@ public class TaskListAdapter extends Adapter<TaskListAdapter.MyViewHolder> {
 		public MyViewHolder(View view) {
 			super(view);
 			// TODO Auto-generated constructor stub
+			if (view == headerView)
+				return;
 			taskItem = (RelativeLayout) view.findViewById(R.id.rl_task_item);
 			taskLogo = (ImageView) view.findViewById(R.id.iv_task_logo);
 			taskNo = (TextView) view.findViewById(R.id.tv_task_no);

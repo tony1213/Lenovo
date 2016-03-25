@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -49,9 +51,10 @@ public class CycleViewPager extends Fragment implements OnPageChangeListener {
 			switch (msg.what) {
 			case SCROLLING:
 				currentPosition++;
-//				Log.e("currentPosition", currentPosition + "");
+				// Log.e("currentPosition", currentPosition + "");
 				if (currentPosition >= imageViews.size()) {
-					viewPager.setCurrentItem(0, true);//此处如果改为false，下面的onPageScrollStateChanged 将不会执行，handle将不会重新执行任务，
+					viewPager.setCurrentItem(0, true);// 此处如果改为false，下面的onPageScrollStateChanged
+														// 将不会执行，handle将不会重新执行任务，
 				} else {
 					viewPager.setCurrentItem(currentPosition, true);
 				}
@@ -62,6 +65,88 @@ public class CycleViewPager extends Fragment implements OnPageChangeListener {
 			}
 		};
 	};
+
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+		Log.e("==onActivityCreated====", "onActivityCreated");
+	};
+
+	@Override
+	public void onAttach(Context context) {
+		// TODO Auto-generated method stub
+		super.onAttach(context);
+		Log.e("==onAttach====", "onAttach");
+	}
+
+	@Override
+	public void onCreate(@Nullable Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		Log.e("==onCreate====", "onCreate");
+	}
+
+	@Override
+	public void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		Log.e("==onDestroy====", "onDestroy");
+	}
+
+	@Override
+	public void onDestroyView() {
+		// TODO Auto-generated method stub
+		super.onDestroyView();
+		Log.e("==onDestroyView====", "onDestroyView");
+	}
+
+	@Override
+	public void onDetach() {
+		// TODO Auto-generated method stub
+		super.onDetach();
+		Log.e("==onDetach====", "onDetach");
+	}
+
+	@Override
+	public void onHiddenChanged(boolean hidden) {
+		// TODO Auto-generated method stub
+		super.onHiddenChanged(hidden);
+		Log.e("==onHiddenChanged====", "onHiddenChanged");
+	}
+
+	@Override
+	public void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		Log.e("==onPause====", "onPause");
+	}
+
+	@Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		Log.e("==onResume====", "onResume");
+	}
+
+	@Override
+	public void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		Log.e("==onStart====", "onStart");
+	}
+
+	@Override
+	public void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		Log.e("==onStop====", "onStop");
+	}
+
+	@Override
+	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onViewCreated(view, savedInstanceState);
+		Log.e("==onViewCreated====", "onViewCreated");
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -220,7 +305,7 @@ public class CycleViewPager extends Fragment implements OnPageChangeListener {
 		@Override
 		public void destroyItem(ViewGroup container, int position, Object object) {
 
-//			Log.e("==cycleViewPager  destroyItem==", position + "");
+			// Log.e("==cycleViewPager  destroyItem==", position + "");
 			ImageView image = (ImageView) object;
 			container.removeView(image);
 		}
@@ -228,7 +313,7 @@ public class CycleViewPager extends Fragment implements OnPageChangeListener {
 		@Override
 		public View instantiateItem(ViewGroup container, int position) {
 			ImageView v = imageViews.get(position % 4);
-//			Log.e("==instantiate==", position + "");
+			// Log.e("==instantiate==", position + "");
 			if (mImageCycleViewListener != null) {
 				v.setOnClickListener(new OnClickListener() {
 
@@ -252,8 +337,8 @@ public class CycleViewPager extends Fragment implements OnPageChangeListener {
 
 	@Override
 	public void onPageScrollStateChanged(int state) {
-		
-//		Log.e("==onPageScrollState==", "==onPageScrollState==");
+
+		// Log.e("==onPageScrollState==", "==onPageScrollState==");
 		if (state == ViewPager.SCROLL_STATE_DRAGGING) { // viewPager在滚动
 			handler.removeCallbacks(runnable);// 当拖动时取消之前轮播的handle任务
 			return;
@@ -272,7 +357,7 @@ public class CycleViewPager extends Fragment implements OnPageChangeListener {
 
 	@Override
 	public void onPageSelected(int position) {
-//		Log.e("==onPageSelected==", "==onPageSelected==");
+		// Log.e("==onPageSelected==", "==onPageSelected==");
 		currentPosition = position % 4;
 		setIndicator(currentPosition);
 	}
