@@ -232,6 +232,23 @@ public class CycleViewPager extends Fragment implements OnPageChangeListener {
 		indicatorLayout.setLayoutParams(params);
 	}
 
+	/**
+	 * 提供外部控制
+	 * 
+	 * @return
+	 */
+	public Runnable getRunnable() {
+		return runnable;
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public Handler getHandler() {
+		return handler;
+	}
+
 	final Runnable runnable = new Runnable() {
 
 		@Override

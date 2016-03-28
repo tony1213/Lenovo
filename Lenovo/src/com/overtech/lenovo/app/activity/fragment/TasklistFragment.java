@@ -7,21 +7,29 @@ import android.content.Intent;
 import android.graphics.Bitmap.Config;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.SystemClock;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.RecyclerView.OnScrollListener;
 import android.support.v7.widget.RecyclerView.Recycler;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MenuItem.OnActionExpandListener;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
+import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.overtech.lenovo.R;
@@ -52,6 +60,9 @@ public class TasklistFragment extends BaseFragment implements OnClickListener,
 	private TaskListAdapter adapter;
 	private List<Task> datas;
 	private CycleViewPager cycleViewPager;
+
+	private Handler handler;// cyclerviewpager的handler
+	private Runnable runnable;// cyclerviewpager的runnable
 	private List<ImageView> views = new ArrayList<ImageView>();
 	private List<ADInfo> infos = new ArrayList<ADInfo>();
 	private String[] imageUrls = {
@@ -92,25 +103,27 @@ public class TasklistFragment extends BaseFragment implements OnClickListener,
 		// mTaskVisit.setOnClickListener(this);
 		// mTaskAccount.setOnClickListener(this);
 		// mTaskEvaluation.setOnClickListener(this);
-
+		// getActivity().getWindow().invalidatePanelMenu(Window.FEATURE_OPTIONS_PANEL);//刷新菜单
+		// getActivity().invalidateOptionsMenu();//该方法也会让系统调用onPrepareOptionsMenu();
 	}
 
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		// TODO Auto-generated method stub
 		inflater.inflate(R.menu.menu_tasklist, menu);
-		super.onCreateOptionsMenu(menu, inflater);
-	}
 
-	@Override
-	public void onPrepareOptionsMenu(Menu menu) {
-		// TODO Auto-generated method stub
 		ActionBar actionBar = ((MainActivity) getActivity())
 				.getSupportActionBar();
 		actionBar.setTitle("工单");
 		Toolbar toolbar = (Toolbar) getActivity().findViewById(
 				R.id.toolbar_main);
 		toolbar.setNavigationIcon(R.drawable.icon_tab_tasklist_selected);
+		super.onCreateOptionsMenu(menu, inflater);
+	}
+
+	@Override
+	public void onPrepareOptionsMenu(Menu menu) {
+		// TODO Auto-generated method stub
 		super.onPrepareOptionsMenu(menu);
 	}
 
@@ -121,25 +134,39 @@ public class TasklistFragment extends BaseFragment implements OnClickListener,
 		case R.id.menu_all:
 			Utilities.showToast("所有", getActivity());
 			break;
-		case R.id.menu2:
-			Utilities.showToast("菜单2", getActivity());
-		case R.id.menu3:
-			Utilities.showToast("菜单3", getActivity());
-		case R.id.menu7:
+		case R.id.menu_receive:
+			Utilities.showToast("接单", getActivity());
+			break;
+		case R.id.menu_order:
+			Utilities.showToast("预约", getActivity());
+			break;
+		case R.id.menu_visit:
+			Utilities.showToast("上门", getActivity());
+			break;
+		case R.id.menu_account:
+			Utilities.showToast("结单", getActivity());
+			break;
+		case R.id.menu_evaluate:
+			Utilities.showToast("评价", getActivity());
+			break;
+		case R.id.menu_notification:
 			showAnimate(item);
+			break;
 		default:
 			break;
 		}
 		return super.onOptionsItemSelected(item);
 	}
 
-	private void showAnimate(MenuItem menuItem) {
-		ImageView image = new ImageView(getContext());
-		image.setScaleType(ScaleType.CENTER_CROP);
+	private void showAnimate(MenuItem menuItem) {// 目前给通知做动画，会发现设置的actioview的动画总是和icon的位置有偏差，原因待查
+		final ImageView image = (ImageView) LayoutInflater.from(getContext())
+				.inflate(R.layout.action_view_notification, null);
+
 		image.setImageResource(R.drawable.anim_task_notification);
 		menuItem.setActionView(image);
 		AnimationDrawable animation = (AnimationDrawable) image.getDrawable();
 		animation.start();
+
 	}
 
 	private void initRecyclerView() {
@@ -189,6 +216,33 @@ public class TasklistFragment extends BaseFragment implements OnClickListener,
 		adapter.setOnItemClickListener(this);
 		mRecyclerView.setAdapter(adapter);
 
+		mRecyclerView.addOnScrollListener(new OnScrollListener() {
+			@Override
+			public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+				// TODO Auto-generated method stub
+				super.onScrolled(recyclerView, dx, dy);
+
+			}
+
+			@Override
+			public void onScrollStateChanged(RecyclerView recyclerView,
+					int newState) {// 目前recyclerview的第一个item是轮播图，所以在此判断当第一个可见的是轮播图时，并且空闲时清除之前的任务重新开始新的任务
+				// TODO Auto-generated method stub
+				LinearLayoutManager linearManager = (LinearLayoutManager) recyclerView
+						.getLayoutManager();
+				int firstVisibleItemPosition = linearManager
+						.findFirstVisibleItemPosition();
+				if (firstVisibleItemPosition == 0
+						&& newState == RecyclerView.SCROLL_STATE_IDLE) {
+					handler.removeCallbacks(runnable);
+					handler.postAtTime(runnable, 5000);
+				} else {
+					handler.removeCallbacks(runnable);
+				}
+
+				super.onScrollStateChanged(recyclerView, newState);
+			}
+		});
 	}
 
 	private void initialCycleViewPager() {
@@ -200,6 +254,10 @@ public class TasklistFragment extends BaseFragment implements OnClickListener,
 
 		cycleViewPager = (CycleViewPager) getFragmentManager()
 				.findFragmentById(R.id.fragment_cycle_viewpager_content);
+
+		handler = cycleViewPager.getHandler();
+		runnable = cycleViewPager.getRunnable();
+
 		for (int i = 0; i < imageUrls.length; i++) {
 			ADInfo info = new ADInfo();
 			info.setUrl(imageUrls[i]);

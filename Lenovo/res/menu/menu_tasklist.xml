@@ -1,33 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" >
+
     <item
         android:id="@+id/menu_all"
         android:title="所有"
         app:showAsAction="always"/>
     <item
-        android:id="@+id/menu2"
+        android:id="@+id/menu_receive"
         android:title="接单"
         app:showAsAction="always"/>
     <item
-        android:id="@+id/menu3"
+        android:id="@+id/menu_order"
         android:title="预约"
         app:showAsAction="always"/>
-        />    <item
-        android:id="@+id/menu4"
+    <item
+        android:id="@+id/menu_visit"
         android:title="上门"
         app:showAsAction="ifRoom"/>
-        />    <item
-        android:id="@+id/menu5"
+    <item
+        android:id="@+id/menu_account"
         android:title="结单"
         app:showAsAction="ifRoom"/>
-        />    <item
-        android:id="@+id/menu6"
+    <item
+        android:id="@+id/menu_evaluate"
         android:title="评价"
         app:showAsAction="ifRoom"/>
     <item
-        android:id="@+id/menu7"
-        android:icon="@drawable/icon_tasklist_notification"
+        android:id="@+id/menu_notification"
+        android:icon="@drawable/notification_4"
+        android:orderInCategory="100"
         android:title="通知"
         app:showAsAction="always"/>
 
