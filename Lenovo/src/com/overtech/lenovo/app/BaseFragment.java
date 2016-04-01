@@ -1,8 +1,13 @@
 package com.overtech.lenovo.app;
 
+import com.overtech.lenovo.R;
 import com.overtech.lenovo.app.activity.callback.FragmentCallback;
 import com.overtech.lenovo.app.activity.callback.FragmentInterface;
+import com.overtech.lenovo.config.Debug;
+import com.overtech.lenovo.widget.customviewpager.CustomeViewPager;
+import com.overtech.lenovo.widget.progressdialog.CustomProgressDialog;
 
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,30 +17,77 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnTouchListener;
+import android.widget.ImageView;
 
 public abstract class BaseFragment extends Fragment implements
 		FragmentInterface, OnTouchListener {
 	protected View mRootView;
+	public CustomProgressDialog progressDialog;
+	private ImageView imageView;
+	private AnimationDrawable animationDrawable;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater,
 			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreateView(inflater, container, savedInstanceState);
+		Debug.log("BaseFragment==onCreateView", "执行到这了");
 		if (mRootView == null) {
 			mRootView = inflater.inflate(getLayoutId(), container, false);
 		}
 		return mRootView;
 	}
+
+	@Override
+	public void setUserVisibleHint(boolean isVisibleToUser) {
+		// TODO Auto-generated method stub
+		super.setUserVisibleHint(isVisibleToUser);
+		if (isVisibleToUser) {
+			if (progressDialog == null) {
+				progressDialog = CustomProgressDialog
+						.createDialog(getActivity());
+			}
+		}
+	}
+
+	/**
+	 * 打开对话框
+	 */
+	public void startProgress(String content) {
+		progressDialog.setMessage(content);
+		progressDialog.show();
+		Debug.log("startProgress====showing", progressDialog.isShowing() + ""
+				+ progressDialog);
+
+		imageView = (ImageView) progressDialog
+				.findViewById(R.id.loadingImageView);
+		animationDrawable = (AnimationDrawable) imageView.getBackground();
+		animationDrawable.start();
+	}
+
+	/**
+	 * 关闭对话框
+	 */
+	public void stopProgress() {
+		Debug.log("stopProgress====showing", progressDialog.isShowing() + ""
+				+ progressDialog);
+		if (progressDialog.isShowing()) {
+			progressDialog.cancel();
+		}
+	}
+
 	@Override
 	public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onActivityCreated(savedInstanceState);
-		setHasOptionsMenu(true);//如果让fragment使用菜单此处为true
+		setHasOptionsMenu(true);// 如果让fragment使用菜单此处为true
 		afterCreate(savedInstanceState);
 	}
+
 	protected abstract int getLayoutId();
+
 	protected abstract void afterCreate(Bundle savedInstanceState);
+
 	/**
 	 * 模拟后退键
 	 */
@@ -84,5 +136,14 @@ public abstract class BaseFragment extends Fragment implements
 
 	public boolean commitData() {
 		return false;
+	}
+
+	@Override
+	public void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		if (progressDialog != null) {
+			progressDialog.dismiss();
+		}
 	}
 }

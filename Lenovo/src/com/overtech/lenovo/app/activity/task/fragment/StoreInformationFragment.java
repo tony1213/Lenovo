@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import com.overtech.lenovo.R;
 import com.overtech.lenovo.app.BaseFragment;
 import com.overtech.lenovo.app.activity.adapter.StoreInfoAdapter;
+import com.overtech.lenovo.config.Debug;
 import com.overtech.lenovo.widget.itemdecoration.DividerGridItemDecoration;
 
 public class StoreInformationFragment extends BaseFragment {
@@ -38,6 +39,47 @@ public class StoreInformationFragment extends BaseFragment {
 		// mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(),
 		// 2));
 		mRecyclerView.setAdapter(adapter);
+	}
+	@Override
+	public void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		Debug.log("StoreInformationFragment==", "onStart");
+	}
+	@Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		Debug.log("StoreInformationFragment==", "onResume");
+	}
+	@Override
+	public void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		Debug.log("StoreInformationFragment==", "onPause");
+	}
+	@Override
+	public void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		Debug.log("StoreInformationFragment==", "onStop");
+	}
+	@Override
+	public void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		Debug.log("StoreInformationFragment==", "onDestroy");
+	}
+	@Override
+	public void setUserVisibleHint(boolean isVisibleToUser) {
+		// TODO Auto-generated method stub
+		super.setUserVisibleHint(isVisibleToUser);
+		Debug.log("StoreInformationFragment==", isVisibleToUser+"");
+		if(isVisibleToUser){
+			//开始网络加载
+		}else{
+			//取消网络加载
+		}
 	}
 
 }

@@ -3,18 +3,34 @@ package com.overtech.lenovo.app.activity.task.fragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.Dialog;
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.ListView;
 
 import com.overtech.lenovo.R;
 import com.overtech.lenovo.app.BaseFragment;
 import com.overtech.lenovo.app.activity.adapter.TaskInfoFragAdapter;
+import com.overtech.lenovo.config.Debug;
 import com.overtech.lenovo.entity.tasklist.webservice.TaskProcess;
 
 public class TaskInformationFragment extends BaseFragment {
 	private ListView mTaskProcess;
 	private TaskInfoFragAdapter adapter;
 	private List<TaskProcess> datas;
+	private Handler handler = new Handler() {
+		public void handleMessage(android.os.Message msg) {
+			switch (msg.what) {
+			case 0x1:
+				stopProgress();
+				Debug.log("taskinformationfragment", "收到handler发送的消息了");
+				break;
+
+			default:
+				break;
+			}
+		};
+	};
 
 	@Override
 	protected int getLayoutId() {
@@ -35,6 +51,55 @@ public class TaskInformationFragment extends BaseFragment {
 		datas.add(new TaskProcess("评价", "2016/01/22 14:00", "问题已经解决，态度认真负责", ""));
 		adapter = new TaskInfoFragAdapter(getActivity(), datas);
 		mTaskProcess.setAdapter(adapter);
+	}
+
+	@Override
+	public void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		Debug.log("TaskInformationFragment==", "onStart");
+	}
+
+	@Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		Debug.log("TaskInformationFragment==", "onResume");
+	}
+
+	@Override
+	public void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		Debug.log("TaskInformationFragment==", "onPause");
+	}
+
+	@Override
+	public void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		Debug.log("TaskInformationFragment==", "onStop");
+	}
+
+	@Override
+	public void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		Debug.log("TaskInformationFragment==", "onDestroy");
+	}
+
+	@Override
+	public void setUserVisibleHint(boolean isVisibleToUser) {
+		// TODO Auto-generated method stub
+		super.setUserVisibleHint(isVisibleToUser);
+		Debug.log("TaskInformationFragment==", isVisibleToUser + "");
+		if (isVisibleToUser) {
+			startProgress("加载中...");
+			handler.sendEmptyMessageDelayed(0x1, 5000);
+			// 开始网络加载
+		} else {
+			// 取消网络加载
+		}
 	}
 
 }

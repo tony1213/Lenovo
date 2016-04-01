@@ -98,30 +98,30 @@ public class KnowledgeFragment extends BaseFragment {
 			@Override
 			public boolean onQueryTextSubmit(String arg0) {
 				// TODO Auto-generated method stub
-				Utilities.showToast("query_text_submit====", getContext());
+				Utilities.showToast("query_text_submit===="+arg0, getContext());
 				return false;
 			}
 			
 			@Override
 			public boolean onQueryTextChange(String arg0) {
 				// TODO Auto-generated method stub
-				Utilities.showToast("query_text_change====", getContext());
+				Utilities.showToast("query_text_change===="+arg0, getContext());
 				return false;
 			}
 		});
 		
+//		ActionBar actionBar = ((MainActivity) getActivity())
+//				.getSupportActionBar();
+//		actionBar.setTitle("知识");
+//		Toolbar toolbar = (Toolbar) getActivity().findViewById(
+//				R.id.toolbar_main);
+//		toolbar.setNavigationIcon(R.drawable.icon_tab_knowledge_selected);
 		super.onCreateOptionsMenu(menu, inflater);
 	}
 
 	@Override
 	public void onPrepareOptionsMenu(Menu menu) {
 		// TODO Auto-generated method stub
-		ActionBar actionBar = ((MainActivity) getActivity())
-				.getSupportActionBar();
-		actionBar.setTitle("知识");
-		Toolbar toolbar = (Toolbar) getActivity().findViewById(
-				R.id.toolbar_main);
-		toolbar.setNavigationIcon(R.drawable.icon_tab_knowledge_selected);
 		super.onPrepareOptionsMenu(menu);
 	}
 

@@ -5,7 +5,11 @@ import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.HorizontalScrollView;
-
+/**
+ * 	自定义viewpager,处理滑动事件与HorizontalScrollView 的冲突
+ * @author Overtech Will
+ *
+ */
 public class CustomeViewPager extends ViewPager {
 
 	public CustomeViewPager(Context context) {

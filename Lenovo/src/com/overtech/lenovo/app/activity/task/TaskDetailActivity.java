@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
@@ -18,6 +19,7 @@ import com.overtech.lenovo.app.activity.task.fragment.DetailInformationFragment;
 import com.overtech.lenovo.app.activity.task.fragment.PropertyFragment;
 import com.overtech.lenovo.app.activity.task.fragment.StoreInformationFragment;
 import com.overtech.lenovo.app.activity.task.fragment.TaskInformationFragment;
+import com.overtech.lenovo.config.Debug;
 import com.overtech.lenovo.widget.customviewpager.CustomeViewPager;
 
 public class TaskDetailActivity extends BaseActivity {
@@ -32,7 +34,18 @@ public class TaskDetailActivity extends BaseActivity {
 	private DetailInformationFragment detailInfoFrag;// 详细信息
 	private StoreInformationFragment storeInfoFrag;// 门店信息
 	private PropertyFragment propertyFrag;// 资产
+	private Handler handler=new Handler(){
+		public void handleMessage(android.os.Message msg) {
+			switch (msg.what) {
+			case 0x1:
+				Debug.log("taskdetailActivity==handler", "收到handler发送过来的消息了");
+				break;
 
+			default:
+				break;
+			}
+		};
+	};
 	@Override
 	protected int getLayoutIds() {
 		// TODO Auto-generated method stub
@@ -71,10 +84,51 @@ public class TaskDetailActivity extends BaseActivity {
 
 		adapter = new TaskDetailAdapter(getSupportFragmentManager(),
 				listFragment, listTitle);
-
+		mViewPager.setOffscreenPageLimit(3);
 		mViewPager.setAdapter(adapter);
+		mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout){
+			@Override
+			public void onPageScrollStateChanged(int state) {
+				// TODO Auto-generated method stub
+				super.onPageScrollStateChanged(state);
+				Log.e("onPageScrollStateChanged", state+"");
+				
+			}
+			@Override
+			public void onPageSelected(int arg0) {
+				// TODO Auto-generated method stub
+				super.onPageSelected(arg0);
+				Log.e("onPageSelected==", arg0+"");
+			}
+			@Override
+			public void onPageScrolled(int arg0, float arg1, int arg2) {
+				// TODO Auto-generated method stub
+				super.onPageScrolled(arg0, arg1, arg2);
+				
+			}
+		});
 		mTabLayout.setupWithViewPager(mViewPager);
-
+		
+//		mTabLayout.setOnTabSelectedListener(new OnTabSelectedListener() {
+//			
+//			@Override
+//			public void onTabUnselected(Tab arg0) {
+//				// TODO Auto-generated method stub
+//				Log.e("onTabUnselected", arg0.getPosition()+"");
+//			}
+//			
+//			@Override
+//			public void onTabSelected(Tab arg0) {
+//				// TODO Auto-generated method stub
+//				Log.e("onTabSelected", arg0.getPosition()+"");
+//			}
+//			
+//			@Override
+//			public void onTabReselected(Tab arg0) {
+//				// TODO Auto-generated method stub
+//				Log.e("onTabReselected", arg0.getPosition()+"");
+//			}
+//		});
 		mTitle.setOnClickListener(new OnClickListener() {
 
 			@Override

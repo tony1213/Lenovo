@@ -76,18 +76,18 @@ public class InformationFragment extends BaseFragment {
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		// TODO Auto-generated method stub
 		inflater.inflate(R.menu.menu_information, menu);
+//		ActionBar actionBar = ((MainActivity) getActivity())
+//				.getSupportActionBar();
+//		actionBar.setTitle("信息");
+//		Toolbar toolbar = (Toolbar) getActivity().findViewById(
+//				R.id.toolbar_main);
+//		toolbar.setNavigationIcon(R.drawable.icon_tab_information_selected);
 		super.onCreateOptionsMenu(menu, inflater);
 	}
 
 	@Override
 	public void onPrepareOptionsMenu(Menu menu) {
 		// TODO Auto-generated method stub
-		ActionBar actionBar = ((MainActivity) getActivity())
-				.getSupportActionBar();
-		actionBar.setTitle("信息");
-		Toolbar toolbar = (Toolbar) getActivity().findViewById(
-				R.id.toolbar_main);
-		toolbar.setNavigationIcon(R.drawable.icon_tab_information_selected);
 		super.onPrepareOptionsMenu(menu);
 	}
 

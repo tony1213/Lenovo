@@ -1,6 +1,8 @@
 package com.overtech.lenovo.widget.progressdialog;
 
 import com.overtech.lenovo.R;
+import com.overtech.lenovo.config.Debug;
+
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
@@ -31,9 +33,13 @@ public class CustomProgressDialog extends Dialog {
 		if (customProgressDialog == null) {
 			return;
 		}
-		ImageView imageView = (ImageView) customProgressDialog.findViewById(R.id.loadingImageView);
-		AnimationDrawable animationDrawable = (AnimationDrawable) imageView.getBackground();
-		animationDrawable.start();
+		Debug.log("onWindowProgressDialog====", "onWindowProgressDialog=");
+		//暂不在此处使用
+//		ImageView imageView = (ImageView) customProgressDialog
+//				.findViewById(R.id.loadingImageView);
+//		AnimationDrawable animationDrawable = (AnimationDrawable) imageView
+//				.getBackground();
+//		animationDrawable.start();
 	}
 
 	/**

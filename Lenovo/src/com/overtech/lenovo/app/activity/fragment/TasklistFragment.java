@@ -112,12 +112,12 @@ public class TasklistFragment extends BaseFragment implements OnClickListener,
 		// TODO Auto-generated method stub
 		inflater.inflate(R.menu.menu_tasklist, menu);
 
-		ActionBar actionBar = ((MainActivity) getActivity())
-				.getSupportActionBar();
-		actionBar.setTitle("工单");
-		Toolbar toolbar = (Toolbar) getActivity().findViewById(
-				R.id.toolbar_main);
-		toolbar.setNavigationIcon(R.drawable.icon_tab_tasklist_selected);
+//		ActionBar actionBar = ((MainActivity) getActivity())
+//				.getSupportActionBar();
+//		actionBar.setTitle("工单");
+//		Toolbar toolbar = (Toolbar) getActivity().findViewById(
+//				R.id.toolbar_main);
+//		toolbar.setNavigationIcon(R.drawable.icon_tab_tasklist_selected);
 		super.onCreateOptionsMenu(menu, inflater);
 	}
 
